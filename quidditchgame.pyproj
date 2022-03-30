@@ -4,13 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>52e1a3e5-4968-4294-971b-8036a926f594</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>quidditchgame.py</StartupFile>
+    <StartupFile>basicgame.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>quidditchgame</Name>
     <RootNamespace>quidditchgame</RootNamespace>
+    <InterpreterId>Global|PythonCore|3.10</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +22,23 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="quidditchgame.py" />
+    <Compile Include="basicgame.py" />
+    <Compile Include="ground.py" />
+    <Compile Include="interstitial.py" />
+    <Compile Include="mapp.py" />
+    <Compile Include="menu.py" />
+    <Compile Include="tiles.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Background1.jpg" />
+    <Content Include="Griff_block.png" />
+    <Content Include="Huff_block.png" />
+    <Content Include="Rave_block.png" />
+    <Content Include="Slyth_block.png" />
+    <Content Include="surfmapp.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
