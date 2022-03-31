@@ -25,6 +25,7 @@
     <Compile Include="basicgame.py" />
     <Compile Include="ground.py" />
     <Compile Include="interstitial.py" />
+    <Compile Include="main.py" />
     <Compile Include="mapp.py" />
     <Compile Include="menu.py" />
     <Compile Include="tiles.py" />
@@ -36,6 +37,7 @@
     <Content Include="Background1.jpg" />
     <Content Include="Griff_block.png" />
     <Content Include="Huff_block.png" />
+    <Content Include="QuidditchDiagram.drawio" />
     <Content Include="Rave_block.png" />
     <Content Include="Slyth_block.png" />
     <Content Include="surfmapp.txt" />

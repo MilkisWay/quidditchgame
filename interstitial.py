@@ -17,4 +17,5 @@ class InterstitialState(GameState):
         if (self.waitTimer < 0):
             self.game.changeState(self.nextState)
     def draw(self, surface):
-        self.font.centre(surface, self.message, surface.get_rect().height/2)
+        pass
+        #self.font.centre(surface, self.message, surface.get_rect().height/2)

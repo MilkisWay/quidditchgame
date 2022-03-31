@@ -14,7 +14,7 @@ class Ground:
 
         self.tiles=pygame.sprite.Group()
 
-        for row_index,row in enumerate(layout):#index and information
+        for row_index,row in enumerate(layout):#index and information #enum
              for col_index,lock in enumerate(row):
                  x = col_index * tile_size
                  y = row_index * tile_size

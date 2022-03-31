@@ -22,7 +22,7 @@ class BasicGame(object):
         pygame.init()
         pygame.display.set_caption(gameName);
         self.fpsClock = pygame.time.Clock()
-        self.mainwindow = pygame.display.set_mode((screen_width,screen_height))#fill from previous Kept in Tile
+        self.mainwindow = pygame.display.set_mode((screen_width,screen_height),HWSURFACE|DOUBLEBUF|FULLSCREEN,32)#fill from previous Kept in Tile
         self.background = pygame.image.load('Background1.jpg')
         self.ground = Ground(surface_map,self.mainwindow)
         self.currentState=None
@@ -42,7 +42,7 @@ class BasicGame(object):
                 if event.type == QUIT:
                     pygame.quit()
                     sys.exit()
-                if event.type == pygame.KEYDOWN:
+                if event.type == pygame.KEYDOWN:#in one def
                     if event.key == K_ESCAPE:
                         pygame.quit()
                         sys.exit()
