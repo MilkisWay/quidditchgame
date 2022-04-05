@@ -1,6 +1,7 @@
 import pygame
 from tiles import Tile
 from mapp import tile_size, screen_width, screen_height
+from tile_image_emun import Tile_image
 
 class Ground:
     def __init__(self,ground_data,ground_result):
@@ -18,18 +19,10 @@ class Ground:
              for col_index,lock in enumerate(row):
                  x = col_index * tile_size
                  y = row_index * tile_size
-                 if lock == 'G':
-                     tile = Tile((x,y),tile_size,'Griff_block.png')#x and y as pos
-                     self.tiles.add(tile)
-                 if lock == 'H':
-                     tile = Tile((x,y),tile_size,'Huff_block.png')#x and y as pos
-                     self.tiles.add(tile)
-                 if lock == 'S':
-                     tile = Tile((x,y),tile_size,'Slyth_block.png')#x and y as pos
-                     self.tiles.add(tile)
-                 if lock == 'R':
-                     tile = Tile((x,y),tile_size,'Rave_block.png')#x and y as pos
-                     self.tiles.add(tile)
+                 for i in Tile_image:
+                     if lock == i.name:
+                         tile = Tile((x,y),tile_size,i.value)
+                         self.tiles.add(tile)
     def run(self):
 
         #tiles

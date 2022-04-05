@@ -8,7 +8,7 @@ class MainMenuState(GameState):
     def __init__(self,game):
         super(MainMenuState,self).__init__(game)
         self.playGameState == None
-        self.font = pygame.font.SysFont("rockwellextra",12,12)
+        self.font = pygame.font.Font('MagicSchoolOne.ttf',40)
         self.index = 0 #currently selected item is stored in 'index'
         self.inputTick = 0
         self.menuItems = ['Start Game','Records','Mode','Quit']
@@ -30,6 +30,16 @@ class MainMenuState(GameState):
             self.inputTick -= gameTime
         if self.inputTick<0:
             self.inputTick=0
-    def draw(self,surface): #here senarios, when people click
-        pass
+    def render(self,surface): #here senarios, when people click
+        surface.blit(self.font.render('Quidditch',True,(0,255,255),(screen_width//2,screen_height//2+100)))
+        count=0
+        y=screen_height//2
+        for item in self.menuItems:
+            itemText = ' '
+            if count == self.index:
+                itemText = '>>'
+            itemText += item
+            surface.blit(self.font.render(itemText,True,(0,255,255),(screen_width//2,y)))
+            y += 150
+            count += 1
        

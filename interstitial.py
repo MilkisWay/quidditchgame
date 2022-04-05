@@ -8,7 +8,7 @@ class InterstitialState(GameState):
     def __init__(self, game, msg,waitTimeMs, nextState):
         super(InterstitialState,self).__init__(game)
         self.nextState = nextState
-        self.font = pygame.font.SysFont("rockwellextra",12,12)
+        self.font = pygame.font.Font('ParryHotter.ttf',40)
         self.message = msg
         self.waitTimer = waitTimeMs
 
@@ -16,6 +16,5 @@ class InterstitialState(GameState):
         self.waitTimer -= gameTime
         if (self.waitTimer < 0):
             self.game.changeState(self.nextState)
-    def draw(self, surface):
-        pass
-        #self.font.centre(surface, self.message, surface.get_rect().height/2)
+    def render(self, surface):
+        surface.blit(self.font.render(self.message,True,(255,255,255)),(40,40)) #change second in blit

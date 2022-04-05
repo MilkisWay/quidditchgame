@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>52e1a3e5-4968-4294-971b-8036a926f594</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>basicgame.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -30,6 +30,7 @@
     <Compile Include="menu.py" />
     <Compile Include="quidditchgame.py" />
     <Compile Include="tiles.py" />
+    <Compile Include="tile_image_emun.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.10" />
@@ -38,6 +39,8 @@
     <Content Include="Background1.jpg" />
     <Content Include="Griff_block.png" />
     <Content Include="Huff_block.png" />
+    <Content Include="MagicSchoolOne.ttf" />
+    <Content Include="ParryHotter.ttf" />
     <Content Include="QuidditchDiagram.drawio" />
     <Content Include="Rave_block.png" />
     <Content Include="Slyth_block.png" />
