@@ -16,12 +16,20 @@ class MainMenuState(GameState):
         self.playGameState = state
     def update(self, gameTime): #here should write work with keys to choose menu items
         keys = pygame.key.pet_pressed()
-        if ((keys[K_w] or keys[K_s]) and self.inputTick = 0):
+        if ((keys[K_w] or keys[K_s]) and self.inputTick == 0):
             self.inputTick = 250
-            if (keys[K_w]):
+            if keys[K_w]:
                 self.index -= 1 #index controlls what is happening
                 if (self.index<0):
-
+                    self.index = len(self.menuItems) -1
+            elif keys[K_s]:
+                 self.index+=1
+                 if self.index == len(self.menuItems):
+                     self.index=0
+        elif self.inputTick>0: #scrolling control
+            self.inputTick -= gameTime
+        if self.inputTick<0:
+            self.inputTick=0
     def draw(self,surface): #here senarios, when people click
         pass
-        
+       
