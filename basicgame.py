@@ -50,7 +50,7 @@ class BasicGame(object):
             if (self.currentState!=None):
                 self.currentState.update(gameTime)
             self.mainwindow.blit(self.background,(0,0))
-            if (self.currentState!=None): #will not work yet
+            if (self.currentState!=None):
                  self.currentState.render(self.mainwindow)
                  self.ground.run()
             pygame.display.update()

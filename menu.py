@@ -10,7 +10,7 @@ class MainMenuState(GameState):
         self.playGameState == None
         self.font = pygame.font.Font('MagicSchoolOne.ttf',48)
         self.index = 0 #currently selected item is stored in 'index'
-        self.image =pygame.image.load('menu_background.jfif')
+        self.image =pygame.image.load('wp7698391-harry-potter-aesthetic-pc-wallpapers.jpg')
         self.inputTick = 0
         self.menu_width=1280
         self.menu_height=720

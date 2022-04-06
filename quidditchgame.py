@@ -6,7 +6,7 @@ from basicgame import *
 #import everything in here
 
 
-class PlayGameState(Gamestate):
+class PlayGameState(GameState):
     def __init__(self,game,gameOverState,gameWinState):
         super(PlayGameState,self).__init__(game)
         self.controllers = None
