@@ -8,13 +8,16 @@ class MainMenuState(GameState):
     def __init__(self,game):
         super(MainMenuState,self).__init__(game)
         self.playGameState == None
-        self.font = pygame.font.Font('MagicSchoolOne.ttf',40)
+        self.font = pygame.font.Font('MagicSchoolOne.ttf',48)
         self.index = 0 #currently selected item is stored in 'index'
+        self.image =pygame.image.load('menu_background.jfif')
         self.inputTick = 0
+        self.menu_width=1280
+        self.menu_height=720
         self.menuItems = ['Start Game','Records','Mode','Quit']
     def setPlayState(self,state):
         self.playGameState = state
-    def update(self, gameTime): #here should write work with keys to choose menu items
+    def update(self, gameTime):
         keys = pygame.key.pet_pressed()
         if ((keys[K_w] or keys[K_s]) and self.inputTick == 0):
             self.inputTick = 250
@@ -31,15 +34,16 @@ class MainMenuState(GameState):
         if self.inputTick<0:
             self.inputTick=0
     def render(self,surface): #here senarios, when people click
-        surface.blit(self.font.render('Quidditch',True,(0,255,255),(screen_width//2,screen_height//2+100)))
+        surface.blit(self.image,(self.menu_width,self.menu_height))
+        surface.blit(self.font.render('Quidditch',True,(249,214,46),(self.menu_width//2,self.menu_height//2+150)))
         count=0
-        y=screen_height//2
+        y=self.menu_height//2+50
         for item in self.menuItems:
             itemText = ' '
             if count == self.index:
                 itemText = '>>'
             itemText += item
-            surface.blit(self.font.render(itemText,True,(0,255,255),(screen_width//2,y)))
-            y += 150
+            surface.blit(self.font.render(itemText,True,(249,214,46),(self.menu_width//2,y)))
+            y -= 100
             count += 1
        
