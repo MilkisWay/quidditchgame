@@ -23,6 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="basicgame.py" />
+    <Compile Include="collision.py" />
     <Compile Include="ground.py" />
     <Compile Include="interstitial.py" />
     <Compile Include="main.py" />
