@@ -14,7 +14,7 @@ class MainMenuState(GameState):
         self.inputTick = 0
         self.menu_width=1280
         self.menu_height=720
-        self.menuItems = ['Start Game','Records','Mode','Quit']
+        self.menuItems = ['Start Game','Records','Settings','Quit']
     def setPlayState(self,state):
         self.playGameState = state
     def update(self, gameTime):

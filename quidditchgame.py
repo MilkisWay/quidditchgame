@@ -15,6 +15,7 @@ class PlayGameState(GameState):
         self.ball_controller = None
         self.gameOverState = gameOverState
         self.gameWinState = gameWinState#dnk but somwhere have to save results to a file
+        #and state for records and settings for speed and random
         self.initialise()
     def onEnter(self,previousState):
         pass #here comes player_controller
