@@ -1,38 +1,32 @@
 import pygame
-import controller_hunter
-from vector import Vec2d
-MAP_WIDTH = 10000
-MAP_HEIGHT=10000
-GRND_BLOCK_H=64
-GRAVITY=0.8
+import os
+import sys
+from pygame.locals import *
 
-class Ball(pygame.sprite.Sprite):
-    def __init__(self, game):
-        pygame.sprite.Sprite.__init__(self)
-        self.controlling=controller_hunter.Controller_hunter(game, self)
-        self.game = game
-        self.position = Vec2d(0, 0)
-        self.velocity = Vec2d(0, 0)
-        self.acceleration = 0
+class BallModel(object):
+    def __init__ (self,pos_x,pos_y,speed):
+        self.pos = pygame.math.Vector2(pos_x,pos_y)
+        self.rect = pygame.Rect(self.pos.x,self.pos.y, 0, 0)
+        self.speed = pygame.math.Vector2(speed,speed)
+        self.g=9.8
 
-        self.image = None
-        self.rect = pygame.Rect(self.position.x,self.position.y, 0, 0)
+class BallController(object):
+    def __init__(self):
+        self.balls = []
 
-    def _update(self):
-        #self._Borders() 
-        local_x = self.position.x - self.game.camera.x
-        local_y = self.position.y - self.game.camera.y
-        self.rect = pygame.Rect(local_x,local_y,self.image.get_width(),self.image.get_height())
+    def addBall(self,pos,speed):
+        self.balls.append(BallModel(pos,speed))
 
+    def fly():
+        pass
 
-    def draw(self):
-            local_x = self.position.x - self.game.camera.x
-            local_y = self.position.y - self.game.camera.y
-            self.game.screen.blit(self.image, (local_x, local_y))
-
-    def reset(self):
-        self.velocity *= -1
-        self.acceleration /= 10
+class BallView(object):
+    def __init__(self, ballController, img):
+        self.BallController = ballController
+        self.image = pygame.image.load(img)
+    def render(self, surface):
+        for i in self.BallController.balls:
+            surface.blit(self.image,self.BallController.balls[i].pos)
 
 
 class Quaffle(Ball):
@@ -45,7 +39,7 @@ class Quaffle(Ball):
     def update(self):
         self._update()
         DAMPING = 0.3
-        gravity_vec = Vec2d(0, GRAVITY).normalized()
+        gravity_vec = Vec2d(0, GRAVITY).normalized()#whaaaaat&&
         self.velocity += gravity_vec * 0.01
 
         if self.held_by:
