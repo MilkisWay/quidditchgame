@@ -4,6 +4,7 @@ import sys
 from pygame.locals import *
 from ball import *
 from mode import *
+from mapp import *
 
 class QuaffleModel(BallModel):
     def __init__(self, pos_x, pos_y, speed):
@@ -11,18 +12,24 @@ class QuaffleModel(BallModel):
      self.pos = pygame.math.Vector2(pos_x,pos_y)
      self.rect = pygame.Rect(self.pos.x,self.pos.y, 0, 0)
      self.speed = pygame.math.Vector2(speed,speed)
-     self.mass = Mode().mode
-     self.g=9.8
+     #self.mass = Mode().mode not right
 
 
 class QuaffleController():
-    def __init__(self):
-        self.ball
-
-    def initball(self,pos_x, pos_y, speed):
-        self.ball = QuaffleModel(pos_x, pos_y, speed)
+    def __init__(self,ball:QuaffleModel):
+        self.ball = ball
 
     def fly(self,time):#time from Chaserpower
         for i in range(1,time):
-            self.pos.x=self.pos.x+self.speed.x*i
-            self.pos.y=self.pos.y+self.speed.y*i - (self.g*(i**2))//2
+            self.ball.pos.x=self.ball.pos.x+self.ball.speed.x*i
+            self.ball.pos.y=self.ball.pos.y+self.ball.speed.y*i - (self.ball.g*(i**2))//2
+            if self.ball.pos.y <=0:
+                self.ball.pos.y = screen_height-100
+                self.ball.pos.x = screen_width//2
+            elif self.ball.pos.x <=0 and self.ball.pos.x>=1080:
+                self.ball.pos.x = screen_width//2
+                self.ball.pos.y = screen_height-100
+            #add stop if interaction with hunter
+    def got_caught(a):#add hunter
+        #call funtion from collision controller
+
