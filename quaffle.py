@@ -7,15 +7,15 @@ from mode import *
 from mapp import *
 
 class QuaffleModel(BallModel):
-    def __init__(self, pos_x, pos_y, speed):
-     super(QuaffleModel,self).__init__(pos_x, pos_y, speed)
-     self.pos = pygame.math.Vector2(pos_x,pos_y)
+    def __init__(self, pos, speed, mode:Mode):
+     super(QuaffleModel,self).__init__(pos, speed)
+     self._pos = pygame.math.Vector2(pos)
      self.rect = pygame.Rect(self.pos.x,self.pos.y, 0, 0)
-     self.speed = pygame.math.Vector2(speed,speed)
-     #self.mass = Mode().mode not right
+     self._speed = pygame.math.Vector2(speed)
+     self._mass = mode.get_Game_Mode()
 
 
-class QuaffleController():
+class QuaffleController(object):
     def __init__(self,ball:QuaffleModel):
         self.ball = ball
 
