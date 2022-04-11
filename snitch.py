@@ -1,3 +1,4 @@
+from operator import truediv
 import pygame
 import os
 import sys
@@ -7,30 +8,36 @@ from ball import *
 from mode import *
 
 class SnitchModel(BallModel):
-    def __init__(self,pos_x,pos_y):
-        super(SnitchModel,self).__init__(pos_x,pos_y)
-        self.pos = pygame.math.Vector2(pos_x,pos_y)
-        self.gameStop = False
-        self.disatnce = pygame.math.Vector2.distance_to(self.pos)#need Sveta`s code to add sicker
-        self.speed=5
+    def __init__(self, pos, speed=5, mode:Mode):
+        super(SnitchModel,self).__init__(pos,speed)
+        self._pos = pygame.math.Vector2(pos)
+        self._gameStop = False
+        self._disatnce = pygame.math.Vector2(0,0)
+        self._speed=speed
+        self._mode = mode.get_Game_Mode()
+        self._possession = False
+
+    def endGame(self):
+        if self._possession:
+            self._gameStop==True
+        return self._gameStop
+
+    def set_Speed(self):
+        self._speed=self._speed*self._mode
+        return self._speed
+
+    def get_Mode(self):
+        return self._mode
 
 class SnitchController(object):
-    def __init__(self):
-        self.mode = Mode().mode
-        self.ball
-
-    def initball(self,pos_x,pos_y):
-        self.ball = SnitchModel(pos_x,pos_y)
-
-    def changeSpeed(self):
-        self.ball.speed = self.ball.speed*self.mode
+    def __init__(self,ball:SnitchModel):
+        self.ball = ball
 
     def fly(self):
-        while self.ball.disatnce>0:
-            self.ball.pos.x += self.ball.speed * (random.randint(self.mode.mode_A,self.mode.mode_B))#redo
-            self.ball.pos.y += self.ball.speed * (random.randint(self.mode.mode_A,self.mode.mode_B))#redo
-        if self.distance==0:
-            self.ball.gameStop==True #snitch is caught
+        while self.ball.disatnce>0: #change MISTAKE!
+            #add here how ball should move
+            self.ball.set_possession_statues(True)
+
 class SnitchView(object):#not done
     def __init__(self, snitchController,imagelist):
         self.SnitchController = snitchController

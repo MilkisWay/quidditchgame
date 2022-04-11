@@ -24,6 +24,7 @@
   <ItemGroup>
     <Compile Include="ball.py" />
     <Compile Include="basicgame.py" />
+    <Compile Include="bludger.py" />
     <Compile Include="Chaser.py" />
     <Compile Include="collision.py" />
     <Compile Include="ground.py" />

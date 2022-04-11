@@ -13,3 +13,15 @@ class Object(pygame.sprite.Sprite):
 
     def get_Coord(self):
         return self._pos
+
+    def set_Coord_x(self,x):
+        self._pos.x=x
+
+    def get_Coord_x(self):
+        return self._pos.x
+
+    def set_Coord_y(self,y):
+        self._pos.y=poy
+
+    def get_Coord_y(self):
+        return self._pos.y
