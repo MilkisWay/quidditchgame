@@ -24,6 +24,7 @@
   <ItemGroup>
     <Compile Include="ball.py" />
     <Compile Include="basicgame.py" />
+    <Compile Include="Chaser.py" />
     <Compile Include="collision.py" />
     <Compile Include="ground.py" />
     <Compile Include="interstitial.py" />
@@ -31,9 +32,12 @@
     <Compile Include="mapp.py" />
     <Compile Include="menu.py" />
     <Compile Include="mode.py" />
+    <Compile Include="movableobject.py" />
+    <Compile Include="object.py" />
     <Compile Include="quaffle.py" />
     <Compile Include="quidditchgame.py" />
     <Compile Include="snitch.py" />
+    <Compile Include="throwableobject.py" />
     <Compile Include="tiles.py" />
     <Compile Include="tile_image_emun.py" />
   </ItemGroup>

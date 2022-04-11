@@ -32,4 +32,4 @@ class QuaffleController(object):
             #add stop if interaction with hunter
     def got_caught(a):#add hunter
         #call funtion from collision controller
-
+        pass
