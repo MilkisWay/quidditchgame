@@ -21,18 +21,21 @@ class QuaffleController(object):
     def __init__(self,ball:QuaffleModel):
         self.ball = ball
 
-    def fly(self,time,angle):#time from Chaserpower
+    def fly_from_throw(self,time,angle):#time from Chaserpower
         if self.ball.get_possession_statues is False:
-            for i in range(1,time):
-                self.ball.pos.x=self.ball.pos.x+self.ball.speed.x*i
-                self.ball.pos.y=self.ball.pos.y+self.ball.speed.y*i*tan(angle) - (self.ball.g*(i**2))//2
-                if self.ball.pos.y <=0:
-                    self.ball.pos.y = screen_height-100
-                    self.ball.pos.x = screen_width//2
-                elif self.ball.pos.x <=0 and self.ball.pos.x>=1080:
-                    self.ball.pos.x = screen_width//2
-                    self.ball.pos.y = screen_height-100
-                if self.ball.get_possession_statues == True:
-                    break
+            self.ball.set_Coord_x(self.ball.get_Coord_x()+self.ball.get_Speed_x()*time)
+            self.ball.set_Coord_y(self.ball.get_Coord_y()+self.ball.get_Speed_y()*time*math.tan(angle) - (self.ball.get_g()*(time**2))//2)
+            if self.ball.get_Coord_y() <=0:
+                self.ball.set_Coord_y(screen_height-100)
+                self.ball.set_Coord_x(screen_width//2)
+            elif self.ball.get_Coord_x() <=0 and self.ball.get_Coord_x()>=1080:
+                self.ball.set_Coord_y(screen_height-100)
+                self.ball.set_Coord_x(screen_width//2)
+
+    def fly_without_throw(self):
+        if self.ball.get_possession_statues is False:
+            self.ball.set_Coord_y(self.ball.get_Coord_y()-1)
+
+
     def got_caught(a):
         pass

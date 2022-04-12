@@ -8,19 +8,20 @@ from ball import *
 from mode import *
 
 class SnitchModel(BallModel):
-    def __init__(self, pos, speed=5, mode:Mode):
-        super(SnitchModel,self).__init__(pos,speed)
-        self._pos = pygame.math.Vector2(pos)
+    def __init__(self, x,y, mode:Mode, seeker1, seeker2, speed =5):
+        super(SnitchModel,self).__init__(x,y,speed)
+        self._pos = pygame.math.Vector2(x,y)
         self._gameStop = False
-        self._disatnce = pygame.math.Vector2(0,0)
         self._speed=speed
         self._mode = mode.get_Game_Mode()
         self._possession = False
+        self._player_seeker = seeker1
+        self._computer_seeker = seeker2
 
     def endGame(self):
         if self._possession:
-            self._gameStop==True
-        return self._gameStop
+            self._gameStop=True
+        return self._game
 
     def set_Speed(self):
         self._speed=self._speed*self._mode
@@ -34,9 +35,7 @@ class SnitchController(object):
         self.ball = ball
 
     def fly(self):
-        while self.ball.disatnce>0: #change MISTAKE!
-            #add here how ball should move
-            self.ball.set_possession_statues(True)
+        if
 
 class SnitchView(object):#not done
     def __init__(self, snitchController,imagelist):

@@ -6,8 +6,8 @@ from movableobject import Movable_Object
 
 class BallModel(Movable_Object):
     _g=9.8
-    def __init__ (self,pos,speed):
-        self._pos = pygame.math.Vector2(pos)
+    def __init__ (self,x,y,speed):
+        self._pos = pygame.math.Vector2(x,y)
         self.rect = pygame.Rect(self.pos.x,self.pos.y, 0, 0)
         self._speed = pygame.math.Vector2(speed)
         self._possession = False           
@@ -19,14 +19,14 @@ class BallModel(Movable_Object):
         self._possession = t
 
     def get_possession_statues(self):
-        return 
+        return self._possession
 
 class BallController(object):
     def __init__(self):
         self.balls = []
 
     def addBall(self,pos,speed):
-        self.balls.append(BallModel(pos,speed))
+        self.balls.append(BallModel(x,y,speed))
 
     def fly():
         pass
