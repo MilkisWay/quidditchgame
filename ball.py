@@ -8,7 +8,7 @@ class BallModel(Movable_Object):
     _g=9.8
     def __init__ (self,x,y,speed):
         self._pos = pygame.math.Vector2(x,y)
-        self.rect = pygame.Rect(self.pos.x,self.pos.y, 0, 0)
+        self.rect = pygame.Rect(self._pos.x,self._pos.y, 0, 0)
         self._speed = pygame.math.Vector2(speed)
         self._possession = False           
 
@@ -25,7 +25,7 @@ class BallController(object):
     def __init__(self):
         self.balls = []
 
-    def addBall(self,pos,speed):
+    def addBall(self,x,y,speed):
         self.balls.append(BallModel(x,y,speed))
 
     def fly():

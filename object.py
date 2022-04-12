@@ -6,7 +6,8 @@ from pygame.locals import *
 class Object(pygame.sprite.Sprite):
      def __init__ (self,x,y):
         self._pos = pygame.math.Vector2(x,y)
-        self.rect = pygame.Rect(self._pos.x,self._pos.y, 0, 0)
+        self.sprite
+        self.rect = self.sprite.get_rect()
 
      def set_Coord(self,x,y):
          self._pos=[x,y]

@@ -25,7 +25,7 @@ class BasicGame(object):
         self.mainwindow = pygame.display.set_mode((screen_width,screen_height),HWSURFACE|DOUBLEBUF|FULLSCREEN,32)
         self.background = pygame.image.load('Background1.jpg')
         self.ground = Ground(surface_map,self.mainwindow)
-        self.currentState=None
+        self.currentState = None
     def changeState(self,newState):
         if self.currentState!=None:
             self.currentState.onExit()

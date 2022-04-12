@@ -25,8 +25,13 @@
     <Compile Include="ball.py" />
     <Compile Include="basicgame.py" />
     <Compile Include="bludger.py" />
+    <Compile Include="catch_ball.py" />
     <Compile Include="Chaser.py" />
     <Compile Include="collision.py" />
+    <Compile Include="controller.py" />
+    <Compile Include="controller_hunter.py" />
+    <Compile Include="Event.py" />
+    <Compile Include="Game_2.py" />
     <Compile Include="ground.py" />
     <Compile Include="interstitial.py" />
     <Compile Include="main.py" />
@@ -35,12 +40,14 @@
     <Compile Include="mode.py" />
     <Compile Include="movableobject.py" />
     <Compile Include="object.py" />
+    <Compile Include="player.py" />
     <Compile Include="quaffle.py" />
     <Compile Include="quidditchgame.py" />
     <Compile Include="snitch.py" />
     <Compile Include="throwableobject.py" />
     <Compile Include="tiles.py" />
     <Compile Include="tile_image_emun.py" />
+    <Compile Include="Unit_2.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.10" />
@@ -50,12 +57,14 @@
     <Content Include="Griff_block.png" />
     <Content Include="Huff_block.png" />
     <Content Include="MagicSchoolOne.ttf" />
+    <Content Include="MenuBack.jpg" />
+    <Content Include="menuname.png" />
     <Content Include="ParryHotter.ttf" />
     <Content Include="QuidditchDiagram.drawio" />
     <Content Include="Rave_block.png" />
     <Content Include="Slyth_block.png" />
+    <Content Include="snitch.jpg" />
     <Content Include="surfmapp.txt" />
-    <Content Include="wp7698391-harry-potter-aesthetic-pc-wallpapers.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

@@ -9,12 +9,14 @@ from mode import *
 from collision import CollisionController
 
 class SnitchModel(BallModel):
-    def __init__(self, x,y, mode:Mode, seeker1, seeker2, speed =5):
+    def __init__(self, x,y, seeker1 =1, seeker2=1, speed =5):
         super(SnitchModel,self).__init__(x,y,speed)
+        self.image = pygame.Surface((32,32))
+        self.rect = self.image.get_rect()
         self._pos = pygame.math.Vector2(x,y)
         self._gameStop = False
         self._speed=speed
-        self._mode = mode.get_Game_Mode()
+        #self._mode = mode.get_Game_Mode()
         self._possession = False
         self.player_seeker = seeker1
         self.computer_seeker = seeker2
@@ -23,6 +25,7 @@ class SnitchModel(BallModel):
     def endGame(self):
         if self._possession:
             self._gameStop=True
+        return self._gameStop
 
     def set_Speed(self):
         self._speed=self._speed*self._mode
@@ -31,8 +34,11 @@ class SnitchModel(BallModel):
     def get_Mode(self):
         return self._mode
 
-    def set_who_posses(self,person):
+    def set_who_possess(self,person):
         self._who_posses = person
+
+    def get_who_posses(self):
+        return self._who_possess
 
 class SnitchController(object):
     def __init__(self,ball:SnitchModel):
@@ -45,15 +51,12 @@ class SnitchController(object):
         collision_Controller=CollisionController(self._ball,self.computer_seeker)
         if collision_Controller.collision_Detection() == True:
             self._ball.set_possession_statues(True)
-            self._ball.set_who_posses(self.computer_seeker)
-            self._ball.endGame() #add how to call an end of a game
-
+            self._ball.set_who_possess(self.computer_seeker)
 
 class SnitchView(object):#not done
-    def __init__(self, snitchController,imagelist):
-        self.SnitchController = snitchController
-        self.image = [self.image.append(imagelist)for i in range(10)]
+    def __init__(self, snitchController):
+        self._snitchcontroller = snitchController
+        self._image=pygame.image.load('snitch.jpg')
     def render(self, surface):
-        for i in self.BallController.balls:
-            surface.blit(self.image,self.BallController.balls[i].pos)
+        surface.blit(self._image,(self.snitchcontroller._ball.get_Coord_x(),self.snitchcontroller._self._ball.get_Coord_y(),32,32))
 

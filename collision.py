@@ -14,8 +14,8 @@ class CollisionController(object):
 
     def collision_Detection(self):
         b=False
-        if self._object1.get_distance(self._object2.get_Coord())<= 0:
+        if self._object1.colliderect(self._object2):
             self._collision_detected = True
-            b = self._collision_detected
-            self.collision_detected = False
+        b = self._collision_detected
+        self.collision_detected = False
         return b
