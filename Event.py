@@ -1,4 +1,4 @@
-import sys
+﻿import sys
 import pygame
 import math
 import pygame.locals as local
@@ -34,11 +34,11 @@ class Event:
                     pygame.quit()
                     sys.exit()
 
-    def pixel_collide(first, second):
-            offset_x = (first.rect.left - second.rect.left)
-            offset_y = (first.rect.top - second.rect.top)
+    def pixel_collide(first, second): #зачем разные методы для одного? Загнать всё в рект
+            offset_x = (first.rect.left - second.rect.left)#И дело закончено 
+            offset_y = (first.rect.top - second.rect.top)#Нам не нужна такая точность
             if (second.mask.overlap(first.mask, (offset_x, offset_y)) != None):
-                return True
+                return True #Достаточно зафиксировать любое столкновение
             else:
                 return False
 
@@ -59,12 +59,12 @@ class Event:
                     return player
             return None
 
-    def truncate(vector, m):
+    def truncate(vector, m): # что это?
             magnitude = vector.length
             if (magnitude > m):
                 vector *= m / magnitude
             return vector
-    def distance(from_sprite, to_sprite):
+    def distance(from_sprite, to_sprite): #это есть в объекте, от которого мы всё наследуем
         return (to_sprite.position - from_sprite.position).get_length()
 
 

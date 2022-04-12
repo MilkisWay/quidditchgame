@@ -1,8 +1,8 @@
-import pygame
+﻿import pygame
 import controller
 
 
-class Controller:
+class Controller: #Зпчем это отдельно в контроллере? Это должно быть в игроке, раз работаем с ним?
     def __init__(self,player):
         self.player=player
         self.controlling=[]

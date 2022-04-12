@@ -1,4 +1,4 @@
-import Unit_2
+﻿import Unit_2
 
 class Chaser(Unit):
     def __init__(self, game, team):
@@ -14,7 +14,7 @@ class Chaser(Unit):
 
         self.max_speed = self.max_velocity + math.floor(random.random() * 5)
 
-    def getShootDist(self):
+    def getShootDist(self): #что это? Зачем? Как игрок может бросить на определённую дистанцию, если надо только подать в шар силу толчка?
         return self.shoot_distance
 
     def update(self):
@@ -30,7 +30,7 @@ class Chaser(Unit):
         if self.controller == 1:
             self.checkQuaffle()
 
-    def checkQuaffle(self):
+    def checkQuaffle(self): #у нас должны совпадать анзвания методов! Иначе ничего не будет работать Откуда в гейм квоффл
         if self.game.quaffle.getPossession() is None:
             if Event.pixel_collide(self.game.quaffle, self):
                 self.game.quaffle.setPossession(self)

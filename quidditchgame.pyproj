@@ -26,12 +26,12 @@
     <Compile Include="basicgame.py" />
     <Compile Include="bludger.py" />
     <Compile Include="catch_ball.py" />
-    <Compile Include="Chaser.py" />
+    <Compile Include="chaser.py" />
     <Compile Include="collision.py" />
     <Compile Include="controller.py" />
     <Compile Include="controller_hunter.py" />
-    <Compile Include="Event.py" />
-    <Compile Include="Game_2.py" />
+    <Compile Include="event.py" />
+    <Compile Include="game.py" />
     <Compile Include="ground.py" />
     <Compile Include="interstitial.py" />
     <Compile Include="main.py" />
@@ -47,7 +47,7 @@
     <Compile Include="throwableobject.py" />
     <Compile Include="tiles.py" />
     <Compile Include="tile_image_emun.py" />
-    <Compile Include="Unit_2.py" />
+    <Compile Include="unit.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.10" />
