@@ -3,12 +3,12 @@ from ball import *
 
 
 class BludgerModel(BallModel):
-    def __init__(self, pos, speed):
-        super(BludgerModel,self).__init__(pos, speed)
-        self._pos = pygame.math.Vector2(pos)
-        self.rect = pygame.Rect(self.pos.x,self.pos.y, 0, 0)
-        self._speed = pygame.math.Vector2(speed)
-        self._possession = False
+    def __init__(self, x,y, speed):
+        super(BludgerModel,self).__init__(x,y, speed)
+        self._pos = pygame.math.Vector2(x,y)
+        self.sprite
+        self.rect = self.sprite.get_rect()
+        self._speed = pygame.math.Vector2(speed,speed)
         self._hit_power = random(1,2)
         self._condition = 100
 
@@ -20,3 +20,18 @@ class BludgerModel(BallModel):
 
     def get_hit_power(self):
         return self._hit_power
+
+class BludgerController(object):
+    def __init__(self):
+        self._balls = []
+
+    def addBall(self,x,y,speed):
+        self._balls.append(BludgerModel(x,y,speed))
+    def fly(self,object):
+        for i in self._balls:
+            if self._balls[i].get_distance(object) <5:
+                self._balls[i].set_Coord(object.get_Coord())
+                self._balls[i].attack(object)
+
+    def attack(self,object):
+        pass

@@ -12,7 +12,8 @@ class QuaffleModel(BallModel):
     def __init__(self, x,y, speed):
      super(QuaffleModel,self).__init__(x,y, speed)
      self._pos = pygame.math.Vector2(x,y)
-     self.rect = pygame.Rect(self.pos.x,self.pos.y, 0, 0)
+     self.sprite
+     self.rect = self.sprite.get_rect()
      self._speed = pygame.math.Vector2(speed,speed)
      #self._mass = mode.get_Game_Mode()
 

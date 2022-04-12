@@ -44,8 +44,9 @@ class SnitchController(object):
     def __init__(self,ball:SnitchModel):
         self._ball = ball
 
-    def fly(self):
-        pass
+    def fly(self,dt):
+        self._ball.set_Coord_x(self._ball.get_Speed_x()*dt*random.randint(0,3))
+        self._ball.set_Coord_y(self._ball.get_Speed_y()*dt*random.randint(0,2))
     
     def call_Collision_Controller(self):
         collision_Controller=CollisionController(self._ball,self.computer_seeker)
