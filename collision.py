@@ -7,13 +7,15 @@ from object import Object
 #add player, ball and so on
 
 class CollisionController(object):
-    def __init__(self):
+    def __init__(self,object1:Object,object2:Object):
+        self._object1 = object1
+        self._object2 = object2
         self._collision_detected = False
 
-    def collision_Detection(self,object1,object2):
-        if object1.get_distance(object2) <= 0:
-            self.collision_detected = True
-        return self._collision_detected
-
-    def return_collision_detection_to_start_point(self):
-        self.collision_detected = False
+    def collision_Detection(self):
+        b=False
+        if self._object1.get_distance(self._object2.get_Coord())<= 0:
+            self._collision_detected = True
+            b = self._collision_detected
+            self.collision_detected = False
+        return b

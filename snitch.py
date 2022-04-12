@@ -6,6 +6,7 @@ import random
 from pygame.locals import *
 from ball import *
 from mode import *
+from collision import CollisionController
 
 class SnitchModel(BallModel):
     def __init__(self, x,y, mode:Mode, seeker1, seeker2, speed =5):
@@ -15,13 +16,13 @@ class SnitchModel(BallModel):
         self._speed=speed
         self._mode = mode.get_Game_Mode()
         self._possession = False
-        self._player_seeker = seeker1
-        self._computer_seeker = seeker2
+        self.player_seeker = seeker1
+        self.computer_seeker = seeker2
+        self._who_possess = None
 
     def endGame(self):
         if self._possession:
             self._gameStop=True
-        return self._game
 
     def set_Speed(self):
         self._speed=self._speed*self._mode
@@ -30,12 +31,23 @@ class SnitchModel(BallModel):
     def get_Mode(self):
         return self._mode
 
+    def set_who_posses(self,person):
+        self._who_posses = person
+
 class SnitchController(object):
     def __init__(self,ball:SnitchModel):
-        self.ball = ball
+        self._ball = ball
 
     def fly(self):
-        if
+        pass
+    
+    def call_Collision_Controller(self):
+        collision_Controller=CollisionController(self._ball,self.computer_seeker)
+        if collision_Controller.collision_Detection() == True:
+            self._ball.set_possession_statues(True)
+            self._ball.set_who_posses(self.computer_seeker)
+            self._ball.endGame() #add how to call an end of a game
+
 
 class SnitchView(object):#not done
     def __init__(self, snitchController,imagelist):
