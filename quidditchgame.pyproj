@@ -48,7 +48,6 @@
     <Compile Include="throwableobject.py" />
     <Compile Include="tiles.py" />
     <Compile Include="tile_image_emun.py" />
-    <Compile Include="unit.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.10" />
@@ -56,6 +55,7 @@
   <ItemGroup>
     <Content Include="Background1.jpg" />
     <Content Include="Griff_block.png" />
+    <Content Include="Harry Potter.ogg" />
     <Content Include="Huff_block.png" />
     <Content Include="MagicSchoolOne.ttf" />
     <Content Include="MenuBack.jpg" />

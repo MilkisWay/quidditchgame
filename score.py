@@ -1,4 +1,3 @@
-import pickle
 
 class Score(object):
     def __init__(self):

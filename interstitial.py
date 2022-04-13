@@ -16,5 +16,6 @@ class InterstitialState(GameState):
         self.waitTimer -= gameTime
         if (self.waitTimer < 0):
             self.game.changeState(self.nextState)
+
     def render(self, surface):
         surface.blit(self.font.render(self.message,True,(255,255,255)),(40,40)) #change second in blit

@@ -1,14 +1,18 @@
 import pygame
-import controller
+#import controller
 import random
-from Unit_2 import Unit 
+#from Unit_2 import Unit 
 
 class Controller_hunter:
     def __init__(self, game, player,angle):
         self.game = game
         self.player=player
+        self.isPaused = False
         self.control = [0,0] #управление
         self.angle = 0
+
+    def pause(self,isPaused):
+        self.isPaused = isPaused
 
     def seek(self, target, slowingRadius=1):
         self.control += self.doSeek(target, slowingRadius)
@@ -17,11 +21,12 @@ class Controller_hunter:
         self.control+= self.doEvade(target)
    
     def get_closest(location, group):
-        closest = Unit(game,team type, [100000,1000000],0)
-        for player in group:
-            if (distance(d_from.position, elem.position) < distance(d_from.position, closest.position)):
-                closest = elem
-        return closest
+        pass
+        #closest = Unit(game,team type, [100000,1000000],0)
+        #for player in group:
+            #if (distance(d_from.position, elem.position) < distance(d_from.position, closest.position)):
+                #closest = elem
+        #return closest
 
 
     def reset(self):
@@ -32,9 +37,10 @@ class Controller_hunter:
         distance = desired.get_length()
 
         if (distance <= slowingRadius):
+            pass
             
         else:
-           
+           pass
         
 
 

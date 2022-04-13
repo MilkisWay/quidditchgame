@@ -8,7 +8,7 @@ class MainMenuState(GameState):
     def __init__(self,game):
         super(MainMenuState,self).__init__(game)
         self.font = pygame.font.Font('MagicSchoolOne.ttf',80)
-        self.__playGameState = None
+        self.playGameState = None
         self.index = 0 #currently selected item is stored in 'index'
         self.image = pygame.image.load('MenuBack.jpg')
         self.image1 = pygame.image.load('menuname.png')
@@ -23,9 +23,11 @@ class MainMenuState(GameState):
         #self._mode=x
 
     def setPlayState(self,state):
-        self.__playGameState = state
+        self.playGameState = state
 
     def update(self, gameTime):
+        #pygame.mixer.music.load('Harry Potter.ogg')
+        #pygame.mixer.music.play(-1)
         keys = pygame.key.get_pressed()
         if ((keys[K_w] or keys[K_s]) and self.inputTick == 0):
             self.inputTick = 250
@@ -49,7 +51,7 @@ class MainMenuState(GameState):
             elif self.index == 1:
                 self.game.changeState(None)#add state to read reacords
             elif self.index == 0:
-                self.game.changeState(self.__playGameState)#Start the Game
+                self.game.changeState(self.playGameState)#Start the Game
     def render(self,surface): #here senarios, when people click
         surface.blit(self.image,(0,0))
         surface.blit(self.image1,(500,100))
