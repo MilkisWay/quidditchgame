@@ -8,8 +8,8 @@ class BallModel(Movable_Object):
     _g=9.8
     def __init__ (self,x,y,speed):
         self._pos = pygame.math.Vector2(x,y)
-        self.sprite
-        self.rect = self.sprite.get_rect()
+        #self.sprite
+        #self.rect = self.sprite.get_rect()
         self._speed = pygame.math.Vector2(speed,speed)
         self._possession = False           
 
@@ -38,4 +38,4 @@ class BallView(pygame.sprite.Sprite):
         self.image = pygame.image.load(img)
     def render(self, surface):
         for i in self.BallController.balls:
-            surface.blit(self.image,(i.get_Coord.x())
+            surface.blit(self.image,(i.get_Coord.x()))

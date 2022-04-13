@@ -27,4 +27,4 @@ class Ground:
 
         #tiles
         self.tiles.update(self.world_shift_x,self.world_shift_y)
-        self.tiles.draw(self.display_ground)
+        #self.tiles.draw(self.display_ground)

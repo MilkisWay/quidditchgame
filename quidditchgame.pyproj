@@ -43,6 +43,7 @@
     <Compile Include="player.py" />
     <Compile Include="quaffle.py" />
     <Compile Include="quidditchgame.py" />
+    <Compile Include="score.py" />
     <Compile Include="snitch.py" />
     <Compile Include="throwableobject.py" />
     <Compile Include="tiles.py" />
@@ -62,6 +63,7 @@
     <Content Include="ParryHotter.ttf" />
     <Content Include="QuidditchDiagram.drawio" />
     <Content Include="Rave_block.png" />
+    <Content Include="score.txt" />
     <Content Include="Slyth_block.png" />
     <Content Include="snitch.jpg" />
     <Content Include="surfmapp.txt" />

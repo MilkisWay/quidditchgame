@@ -58,9 +58,9 @@ class MainMenuState(GameState):
         for item in self.menuItems:
             itemText = ' '
             if count == self.index:
-                itemText = '>>'
+                itemText = '>'
             itemText += item
-            surface.blit(self.font.render(itemText,True,(249,214,46)),(500,y))
+            surface.blit(self.font.render(itemText,True,(237, 213, 79)),(500,y))
             y -= 100
             count += 1
        
