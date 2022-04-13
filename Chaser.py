@@ -1,60 +1,29 @@
-﻿import Unit_2
+from Unit_2 import Unit
+from Game_2 import Game
+from Event import Event 
+from BALL import Quaffle
 
 class Chaser(Unit):
     def __init__(self, game, team):
         Unit.__init__(self, game, team)
-        self.type = "chaser"
-        self.acceleration = 0.01
+        self.type = 'chaser'
+        self.acceleration = 1
+        self.power = 10
+        self.quaffle = []
 
-        self.shoot_distance = 500
-        self.shoot_power = 30
+    def add_quaffle(self):
+        self.quaffle.append(Quaffle(game))
+    
+    def check_quaffle(self):
+        if self.quaffle.getPossession(self) is None:
+                self.quaffle.setPossession(self,player)
 
-        self.skill_attack = 5
-        self.skill_defend = 8
+    
+    def pass_to(self, player):
+        dist_between = (player.position - self.position)
+        self.quaffle.throw(dist_between, self.power)
 
-        self.max_speed = self.max_velocity + math.floor(random.random() * 5)
 
-    def getShootDist(self): #что это? Зачем? Как игрок может бросить на определённую дистанцию, если надо только подать в шар силу толчка?
-        return self.shoot_distance
-
-    def update(self):
-        self._update()
-
-        if self.controller == 2:
-            if self.speed < self.max_speed:
-                self.speed += self.acceleration
-            else:
-                self.speed = self.max_speed
-       
-
-        if self.controller == 1:
-            self.checkQuaffle()
-
-    def checkQuaffle(self): #у нас должны совпадать анзвания методов! Иначе ничего не будет работать Откуда в гейм квоффл
-        if self.game.quaffle.getPossession() is None:
-            if Event.pixel_collide(self.game.quaffle, self):
-                self.game.quaffle.setPossession(self)
-
-    def shoot(self):
-        oppGoal = self.game.get_goal(self)
-        vec_between = (oppGoal.position - self.position).normalized()
-        self.game.quaffle.throw(vec_between, self.shoot_power)
-
-    def pass_to(self, other):
-        vec_between = (other.position - self.position).normalized()
-        self.game.quaffle.throw(vec_between, self.shoot_power)
-
-    def pass_quaffle(self):
-        if self.pointing == 1:
-            self.game.quaffle.position.x = self.position.x + self.start_image.get_width()
-        self.game.quaffle.throw(self.velocity, self.shoot_power)
-
-    def tackle(self, oppChaser):
-        tackle_chance = math.floor((self.skill_attack + random.random() * 4))
-        if tackle_chance > oppChaser.skill_defend:
-            return True
-        else:
-            return False
 
 
 
