@@ -11,9 +11,10 @@ from collision import CollisionController
 class SnitchModel(BallModel):
     def __init__(self, x,y, seeker1 =1, seeker2=1, speed =5):
         super(SnitchModel,self).__init__(x,y,speed)
-        self.image = pygame.Surface((32,32))
-        self.rect = self.image.get_rect()
+        self.image = pygame.Surface((8,8))
+        self.image=pygame.image.load('snitch.png')
         self._pos = pygame.math.Vector2(x,y)
+        self.rect = self.image.get_rect(topleft = self._pos)   
         self._gameStop = False
         self._speed = pygame.math.Vector2(speed,speed)
         #self._mode = mode.get_Game_Mode()
@@ -40,13 +41,18 @@ class SnitchModel(BallModel):
     def get_who_posses(self):
         return self._who_possess
 
+    def get_image(self):
+        return self.image
+
 class SnitchController(object):
     def __init__(self,ball:SnitchModel):
         self._ball = ball
 
     def update(self,dt):
-        self._ball.set_Coord_x(self._ball.get_Speed_x()*dt*random.randint(0,3))
-        self._ball.set_Coord_y(self._ball.get_Speed_y()*dt*random.randint(0,2))
+        
+        
+        self._ball.set_Coord_x(self._ball.get_Speed_x()*dt*random.randint(0,30))
+        self._ball.set_Coord_y(self._ball.get_Speed_y()*dt*random.randint(0,40))
     
     def call_Collision_Controller(self):
         collision_Controller=CollisionController(self._ball,self.computer_seeker)
@@ -57,7 +63,7 @@ class SnitchController(object):
 class SnitchView(object):#not done
     def __init__(self, snitchController):
         self._snitchcontroller = snitchController
-        self._image=pygame.image.load('snitch.jpg')
+        self._image=self._snitchcontroller._ball.get_image()
     def render(self, surface):
         surface.blit(self._image,(self._snitchcontroller._ball.get_Coord_x(),self._snitchcontroller._ball.get_Coord_y(),32,32))
 

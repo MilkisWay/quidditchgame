@@ -61,11 +61,12 @@
     <Content Include="MenuBack.jpg" />
     <Content Include="menuname.png" />
     <Content Include="ParryHotter.ttf" />
+    <Content Include="quaffle.png" />
     <Content Include="QuidditchDiagram.drawio" />
     <Content Include="Rave_block.png" />
     <Content Include="score.txt" />
     <Content Include="Slyth_block.png" />
-    <Content Include="snitch.jpg" />
+    <Content Include="snitch.png" />
     <Content Include="surfmapp.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

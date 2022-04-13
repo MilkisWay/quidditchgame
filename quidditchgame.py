@@ -4,6 +4,7 @@ import sys
 import random
 from pygame.locals import *
 from basicgame import *
+from quaffle import QuaffleController, QuaffleModel, QuaffleView
 from snitch import *
 #import everything in here
 
@@ -15,16 +16,20 @@ class PlayGameState(GameState):
         self.renders =  None
         self.player_controller = None
         self.snitch_controller = None
+        self.quaffle_controller = None
         self.gameOverState = gameOverState
         self.gameWinState = gameWinState #dnk but somwhere have to save results to a file
         #and state for records and settings for speed and random
         self.initialise()
     def initialise(self):
+        quaffle = QuaffleModel(100,100,1)
         snitch = SnitchModel(random.randint(10,1000),random.randint(10,1900))
         self.snitch_controller = SnitchController(snitch)
+        self.quaffle_controller = QuaffleController(quaffle)
         snitch_render = SnitchView(self.snitch_controller)
-        self.controllers=[self.snitch_controller]
-        self.renders =[snitch_render]
+        quaffle_render = QuaffleView(self.quaffle_controller)
+        self.controllers=[self.snitch_controller,self.quaffle_controller]
+        self.renders =[snitch_render,quaffle_render]
     def update(self,gameTime):
         for i in self.controllers:
             i.update(gameTime)

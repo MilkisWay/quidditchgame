@@ -18,12 +18,11 @@ class GameState(object):
         pass
 
 class BasicGame(object):
-    #HWSURFACE|DOUBLEBUF|FULLSCREEN
     def __init__(self, gameName):
         pygame.init()
         pygame.display.set_caption(gameName);
         self.fpsClock = pygame.time.Clock()
-        self.mainwindow = pygame.display.set_mode((screen_width,screen_height),32)
+        self.mainwindow = pygame.display.set_mode((screen_width,screen_height),HWSURFACE|DOUBLEBUF|FULLSCREEN,32)
         self.background = pygame.image.load('Background1.jpg')
         self.ground = Ground(surface_map,self.mainwindow)
         self.currentState = None
