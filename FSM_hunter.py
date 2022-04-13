@@ -1,3 +1,4 @@
+import pygame
 from FSM_base import FSM
 
 class FSM_hunter(FSM):
