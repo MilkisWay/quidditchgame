@@ -1,3 +1,7 @@
+import pygame
+import os
+import sys
+from pygame.locals import *
 from object import *
 
 
@@ -6,7 +10,7 @@ class Movable_Object(Object):
         super(Movable_Object,self).__init__(x,y)
         self._pos = pygame.math.Vector2(x,y)
         self.rect = pygame.Rect(self._pos.x,self._pos.y, 0, 0)
-        self._speed = pygame.math.Vector2(speed)
+        self._speed = pygame.math.Vector2(speed,speed)
 
     def set_Speed(self,speed):
         self._speed = [speed,speed]

@@ -5,28 +5,24 @@ import random
 from pygame.locals import *
 from basicgame import *
 from snitch import *
-from controller_hunter import *
 #import everything in here
 
 
 class PlayGameState(GameState):
-    def __init__(self,game,gameDoneState):
+    def __init__(self,game,gameOverState,gameWinState):
         super(PlayGameState,self).__init__(game)
         self.controllers = None
         self.renders =  None
         self.player_controller = None
         self.snitch_controller = None
-        self.gameOverState = gameDoneState
-        #self.gameWinState = gameWinState#dnk but somwhere have to save results to a file
+        self.gameOverState = gameOverState
+        self.gameWinState = gameWinState #dnk but somwhere have to save results to a file
         #and state for records and settings for speed and random
         self.initialise()
-    def onEnter(self,previousState):
-        self.player_controller.pause(False)
     def initialise(self):
         snitch = SnitchModel(random.randint(10,1000),random.randint(10,1900))
         self.snitch_controller = SnitchController(snitch)
         snitch_render = SnitchView(self.snitch_controller)
-        self.player_controller = Controller_hunter(1,2,3)
         self.controllers=[self.snitch_controller]
         self.renders =[snitch_render]
     def update(self,gameTime):

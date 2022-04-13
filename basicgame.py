@@ -31,15 +31,19 @@ class BasicGame(object):
     def changeState(self,newState):
         if self.currentState!=None:
             self.currentState.onExit()
+
         if newState == None:
             pygame.quit()
             sys.exit()
+
         oldState = self.currentState
         self.currentState = newState
-        #newState.onEnter(oldState)
+        newState.onEnter(oldState)
 
     def run(self,initialState):
+
         self.changeState(initialState)
+
         while True:
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -49,7 +53,9 @@ class BasicGame(object):
                     if event.key == K_ESCAPE:
                         pygame.quit()
                         sys.exit()
+
             gameTime = self.fpsClock.get_time()
+
             if self.currentState!=None:
                 self.currentState.update(gameTime)
 

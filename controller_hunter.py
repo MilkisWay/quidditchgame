@@ -11,8 +11,6 @@ class Controller_hunter:
         self.control = [0,0] #управление
         self.angle = 0
 
-    def pause(self,isPaused):
-        self.isPaused = isPaused
 
     def seek(self, target, slowingRadius=1):
         self.control += self.doSeek(target, slowingRadius)
@@ -22,11 +20,11 @@ class Controller_hunter:
    
     def get_closest(location, group):
         pass
-        #closest = Unit(game,team type, [100000,1000000],0)
-        #for player in group:
-            #if (distance(d_from.position, elem.position) < distance(d_from.position, closest.position)):
-                #closest = elem
-        #return closest
+        closest = Unit(game,team type, [100000,1000000],0)
+        for player in group:
+            if (distance(d_from.position, elem.position) < distance(d_from.position, closest.position)):
+                closest = elem
+        return closest
 
 
     def reset(self):

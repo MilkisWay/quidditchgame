@@ -15,7 +15,7 @@ class SnitchModel(BallModel):
         self.rect = self.image.get_rect()
         self._pos = pygame.math.Vector2(x,y)
         self._gameStop = False
-        self._speed=speed
+        self._speed = pygame.math.Vector2(speed,speed)
         #self._mode = mode.get_Game_Mode()
         self._possession = False
         self.player_seeker = seeker1
@@ -44,7 +44,7 @@ class SnitchController(object):
     def __init__(self,ball:SnitchModel):
         self._ball = ball
 
-    def fly(self,dt):
+    def update(self,dt):
         self._ball.set_Coord_x(self._ball.get_Speed_x()*dt*random.randint(0,3))
         self._ball.set_Coord_y(self._ball.get_Speed_y()*dt*random.randint(0,2))
     
@@ -59,5 +59,5 @@ class SnitchView(object):#not done
         self._snitchcontroller = snitchController
         self._image=pygame.image.load('snitch.jpg')
     def render(self, surface):
-        surface.blit(self._image,(self.snitchcontroller._ball.get_Coord_x(),self.snitchcontroller._self._ball.get_Coord_y(),32,32))
+        surface.blit(self._image,(self._snitchcontroller._ball.get_Coord_x(),self._snitchcontroller._ball.get_Coord_y(),32,32))
 
