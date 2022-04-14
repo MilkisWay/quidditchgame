@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>52e1a3e5-4968-4294-971b-8036a926f594</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>main.py</StartupFile>
+    <StartupFile>BasicGame\main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,52 +22,64 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ball.py" />
-    <Compile Include="basicgame.py" />
-    <Compile Include="bludger.py" />
-    <Compile Include="catch_ball.py" />
-    <Compile Include="chaser.py" />
-    <Compile Include="collision.py" />
-    <Compile Include="controller.py" />
-    <Compile Include="controller_hunter.py" />
-    <Compile Include="event.py" />
-    <Compile Include="game.py" />
-    <Compile Include="ground.py" />
-    <Compile Include="interstitial.py" />
-    <Compile Include="main.py" />
-    <Compile Include="mapp.py" />
-    <Compile Include="menu.py" />
-    <Compile Include="mode.py" />
-    <Compile Include="movableobject.py" />
-    <Compile Include="object.py" />
-    <Compile Include="player.py" />
-    <Compile Include="quaffle.py" />
-    <Compile Include="quidditchgame.py" />
-    <Compile Include="score.py" />
-    <Compile Include="snitch.py" />
-    <Compile Include="throwableobject.py" />
-    <Compile Include="tiles.py" />
-    <Compile Include="tile_image_emun.py" />
+    <Compile Include="Milana\ball.py" />
+    <Compile Include="BasicGame\basicgame.py" />
+    <Compile Include="Milana\bludger.py" />
+    <Compile Include="Sveta\catch_ball.py" />
+    <Compile Include="Sveta\chaser.py" />
+    <Compile Include="Milana\collision.py" />
+    <Compile Include="Sveta\controller.py" />
+    <Compile Include="Sveta\controller_hunter.py" />
+    <Compile Include="Sveta\FSM_base.py" />
+    <Compile Include="Sveta\FSM_hunter.py" />
+    <Compile Include="Sveta\game.py" />
+    <Compile Include="Milana\ground.py" />
+    <Compile Include="BasicGame\interstitial.py" />
+    <Compile Include="BasicGame\main.py" />
+    <Compile Include="Milana\mapp.py" />
+    <Compile Include="BasicGame\menu.py" />
+    <Compile Include="Milana\mode.py" />
+    <Compile Include="Milana\movableobject.py" />
+    <Compile Include="Milana\object.py" />
+    <Compile Include="Sveta\player.py" />
+    <Compile Include="Milana\quaffle.py" />
+    <Compile Include="BasicGame\quidditchgame.py" />
+    <Compile Include="Milana\score.py" />
+    <Compile Include="Sveta\Seeker.py" />
+    <Compile Include="Milana\snitch.py" />
+    <Compile Include="Sveta\Team.pyw" />
+    <Compile Include="Sveta\team_controller.py" />
+    <Compile Include="Milana\throwableobject.py" />
+    <Compile Include="Milana\tiles.py" />
+    <Compile Include="Milana\tile_image_emun.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.10" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Background1.jpg" />
-    <Content Include="Griff_block.png" />
-    <Content Include="Harry Potter.ogg" />
-    <Content Include="Huff_block.png" />
-    <Content Include="MagicSchoolOne.ttf" />
-    <Content Include="MenuBack.jpg" />
-    <Content Include="menuname.png" />
-    <Content Include="ParryHotter.ttf" />
-    <Content Include="quaffle.png" />
-    <Content Include="QuidditchDiagram.drawio" />
-    <Content Include="Rave_block.png" />
-    <Content Include="score.txt" />
-    <Content Include="Slyth_block.png" />
-    <Content Include="snitch.png" />
-    <Content Include="surfmapp.txt" />
+    <Content Include="Photos\Background1.jpg" />
+    <Content Include="Photos\Griff_block.png" />
+    <Content Include="Music\Harry Potter.ogg" />
+    <Content Include="Photos\Huff_block.png" />
+    <Content Include="Fonts\MagicSchoolOne.ttf" />
+    <Content Include="Photos\MenuBack.jpg" />
+    <Content Include="Photos\menuname.png" />
+    <Content Include="Fonts\ParryHotter.ttf" />
+    <Content Include="Photos\quaffle.png" />
+    <Content Include="Photos\Rave_block.png" />
+    <Content Include="Text files\score.txt" />
+    <Content Include="Photos\Slyth_block.png" />
+    <Content Include="Photos\snitch.png" />
+    <Content Include="Text files\surfmapp.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BasicGame\" />
+    <Folder Include="Fonts\" />
+    <Folder Include="Milana\" />
+    <Folder Include="Music\" />
+    <Folder Include="Sveta\" />
+    <Folder Include="Text files\" />
+    <Folder Include="Photos\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

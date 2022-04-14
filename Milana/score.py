@@ -7,7 +7,7 @@ class Score(object):
     def get_score(self):
         return self._score
     def write_score_to_table(self):
-        with open('score1.txt', 'w') as file:
+        with open('score1.txt', 'a') as file:
             file.write(str(self._score))
     def load_score_to_screen(self):
         with open('score1.txt', 'r') as file:
