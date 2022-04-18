@@ -22,7 +22,7 @@ class Hunter(Player):
 
 class Hunter_controller:
     def __init__(self,Hunter):
-        sel.hunter=hunter
+        self.hunter=hunter
     
     def update(self):
         self.checkQuaffle()
