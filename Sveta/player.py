@@ -1,6 +1,6 @@
 import pygame 
 from unit import Unit
-#from collision import CollisionController
+from collision import CollisionController
 
 class Player(Unit):
     def __init__(self,x,y,speed):
