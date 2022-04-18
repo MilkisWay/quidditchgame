@@ -16,7 +16,7 @@ class Player_controller:
     def __init__(self):
         self.players=[]
 
-        def player_control(self, direction):
+    def player_control(self, direction):
             if direction=="left":
                 t=pygame.math.Vector2(-0.5, 0)
             elif direction=="right":
