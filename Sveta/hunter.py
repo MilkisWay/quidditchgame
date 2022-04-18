@@ -4,7 +4,7 @@ import sys
 from player import Player
 from pygame.locals import *
 from ball import BallModel
-#from collision import CollisionController
+from collision import CollisionController
 
 class Hunter(Player):
     def __init__(self,x,y,speed):
