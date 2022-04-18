@@ -20,8 +20,9 @@ class Hunter(Player):
         self.speed=pygame.math.Vector2(0,0)
         self.rect = self.image.get_rect()
 
-class Hunter_controller:
+class Hunter_controller(Player_controller):
     def __init__(self,Hunter):
+        Player_controller.__init__(self)
         self.hunter=hunter
     
     def update(self):
