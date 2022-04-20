@@ -1,6 +1,6 @@
 import pygame 
 from unit import Unit
-from ball import BallModel
+from ball import BallModel#Нельзя так делать, только через контроллеры
 #from collision import CollisionController
 
 class Player(Unit):
@@ -9,11 +9,11 @@ class Player(Unit):
 
         self.type = None
         self.pos = pygame.math.Vector2(10,10)
-        self.speed=pygame.math.Vector2(0, 0)
+        self.speed=pygame.math.Vector2(0, 0)#Как и везде
         self.acceleration = 0
         self.pointer=1 
 
-    def update(self):
+    def update(self): #Это в контроллере, и обращение через get
         keystate = pygame.key.get_pressed()
         if keystate[pygame.K_LEFT]:
             self.speed.x = -3
@@ -30,7 +30,7 @@ class Player(Unit):
         if self.pos.y>800:
             self.pos.y=0
 
-    def collision_Detection(self,object):
+    def collision_Detection(self,object):#В контроллере и просто вызов коллизион контроллера
         b=0
         if pygame.sprite.collide_rect(self,object):
             collision_detected = 1
@@ -47,7 +47,7 @@ class Player_controller:
         all_players = pygame.sprite.Group()
         all_players.add(Player)
         return all_players
-        all_players.draw()
+        all_players.draw()#Этого здесь быть не должно
         
 
     def check_collision(self):
@@ -58,7 +58,7 @@ class Player_controller:
         self.acceleration = 0
 
     def direction_move(self): # показывает, в какую сторону повёрнут  игрок
-        if self.speed.x >= 0:
+        if self.speed.x >= 0:#У селф нет скорости, обращение через гет из игрока
             self.pointer= 1
         else:
             self.pointer = -1

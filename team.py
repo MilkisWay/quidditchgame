@@ -1,15 +1,15 @@
-import pygame 
+﻿import pygame 
 
 class Team(pygame.sprite.Group):
     def __init__(self,players):
         pygame.sprite.Group.__init__(self)
         #self.type = team_type
         self.all_players = pygame.sprite.Group()
-        self.teams=[]
+        self.teams=[]#Ты ничего сюда не добавляешь?
     
 
     def _findPlayer(self, position): #position: hunter or seeker
-        for player in self:
+        for player in self: #Какой игрок в селф? Что просто селф?
             if player.type == position:
                 return player
         return None
@@ -31,7 +31,7 @@ class Team_controller:
     def __init__(self):
         self.all_players = pygame.sprite.Group()
         self.teams = []
-        self.rings =[]
+        self.rings =[]#Не здесь
 
     def add_team(self, team):
             if team.type not in self.teams:

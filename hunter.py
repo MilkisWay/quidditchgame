@@ -1,12 +1,12 @@
-import pygame
+﻿import pygame
 import os
 import sys
 from player import Player
 from player import Player_controller
 from pygame.locals import *
-from ball import BallModel
+from ball import BallModel #Доступ только через контроллер. К данным шара так доступа нет
 from collision import CollisionController
-from quaffle import QuaffleModel
+from quaffle import QuaffleModel #Тоже самое, что и выше
 
 class Hunter(Player):
     def __init__(self,x,y,speed):
@@ -16,16 +16,16 @@ class Hunter(Player):
         #self.team = team
         self.image = pygame.Surface((10, 10))
       
-        self.image=pygame.image.load('hunter.jpg')
+        self.image=pygame.image.load('hunter.jpg')#должно быть во вью
      
         self.acceleration = 1
         self.power = 10
         self.quaffle = None
         self.pos = pygame.math.Vector2(30,10)
-        self.speed=pygame.math.Vector2(0,0)
+        self.speed=pygame.math.Vector2(0,0)#Тоже, что и в охотнике
         self.rect = self.image.get_rect()
 
-    def checkQuaffle(self, quaffle):
+    def checkQuaffle(self, quaffle):#Во-первых все взаимодействия в контроллере, во-вторых этим ты не управляешь
         if self.collision_Detection(quaffle):
             if quaffle.possession==False:
                 self.quaffle=quaffle
@@ -38,7 +38,7 @@ class Hunter(Player):
                 #print(quaffle.pos.x, quaffle.pos.y)
                 print('check')
 
-    def throw(self,quaffle):
+    def throw(self,quaffle): #Откуда взялиьс пули? Вообще не понятно, что
         bullet = Bullet(self.rect.centerx, self.rect.top)
         all_sprites.add(bullet)
         bullets.add(bullet)
