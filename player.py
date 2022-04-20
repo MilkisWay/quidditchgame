@@ -51,7 +51,7 @@ class Player_controller:
     def add_player(self,Player):
         all_players = pygame.sprite.Group()
         all_players.add(Player)
-        return all_players
+        self.players=all_players
 
     def update(player): #Это в контроллере, и обращение через get
         keystate = pygame.key.get_pressed()
