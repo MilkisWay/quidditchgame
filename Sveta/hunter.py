@@ -34,7 +34,6 @@ class Hunter(Player):
                 quaffle.pos.y=self.pos.y
                 print('check')
 
-
 class Hunter_controller(Player_controller):
     def __init__(self,Hunter):
         Player_controller.__init__(self)
@@ -46,4 +45,3 @@ class Hunter_View:
         self.image=pygame.image.load('hunter.jpg')
     def render(self,surface):
         surface.blit(self.image,(self.hunter_controller.get_Coord_x(),self.hunter_controller.get_Coord_y()))
-
