@@ -50,8 +50,6 @@ class SnitchController(object):
         self._ball = ball
 
     def update(self,dt):
-        
-        
         self._ball.set_Coord_x(self._ball.get_Speed_x()*dt*random.randint(0,30))
         self._ball.set_Coord_y(self._ball.get_Speed_y()*dt*random.randint(0,40))
     
