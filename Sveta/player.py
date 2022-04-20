@@ -68,6 +68,5 @@ class Player_View:
     def render(self,surface):
         for i in self.Player_controller.players:
             surface.blit(self.image,(i.get_Coord.x(),i.get_Coord.y()))
-
     
 
