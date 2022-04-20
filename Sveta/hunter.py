@@ -25,20 +25,30 @@ class Hunter(Player):
         self.speed=pygame.math.Vector2(0,0)
         self.rect = self.image.get_rect()
 
-    def checkQuaffle(self, quaffle):
-        if self.collision_Detection(quaffle):
-            if quaffle.possession==False:
-                self.quaffle=quaffle
-                quaffle.possession=True
-                quaffle.pos.x=self.pos.x
-                quaffle.pos.y=self.pos.y
-                print('check')
-
-class Hunter_controller(Player_controller):
+class Hunter_controller:
     def __init__(self,Hunter):
-        Player_controller.__init__(self)
-        self.hunter=Hunter
+        self.hunter=hunter
     
+    def update(self):
+        self.checkQuaffle()
+
+    def checkQuaffle(self):
+         if self.quaffle.get_possession_statues() is None:
+             if collision_Detection(self, self.quaffle):
+                self.quaffle.set_possession_statues(self)
+
+    def key_control(self, direction):
+            if direction=="left":
+                t=pygame.math.Vector2(-0.5, 0)
+            elif direction=="right":
+                t=pygame.math.Vector2(0.5, 0)
+            elif direction== "up":
+                t=pygame.math.Vector2(0, -0.5)
+            elif direction== "down":
+                t=pygame.math.Vector2 (0, 0.5)
+            self.acceleration += 0.9
+            self.speed+=t
+   
 class Hunter_View:
     def __init__(self, hunter_controller):
         self.hunter_controller=hunter_controller

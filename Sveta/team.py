@@ -1,9 +1,12 @@
 import pygame 
 
 class Team(pygame.sprite.Group):
-    def __init__(self, team_type):
+    def __init__(self,players):
         pygame.sprite.Group.__init__(self)
-        self.type = team_type
+        #self.type = team_type
+        self.all_players = pygame.sprite.Group()
+        self.teams=[]
+    
 
     def _findPlayer(self, position): #position: hunter or seeker
         for player in self:
@@ -15,7 +18,7 @@ class Team(pygame.sprite.Group):
         if position in ('hunter', 'seeker'):
             return self._findPlayer(position)
 
-    def get_group(self, group_name):
+    def get_group(self, group_name,player):
         Group = []
         if group_name in ('hunter', 'seeker'):
             for player in self:
@@ -50,15 +53,11 @@ class Team_controller:
                 player._update()
 
 class Team_view:
-    def __init__(self):
+    def __init__(self,Team_controller):
         self.teams = []
 
     def draw_teams(self):
         for team in self.team:
             for player in team:
                 player._render()
-
-
-  
-
 
