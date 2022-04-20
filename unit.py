@@ -3,11 +3,10 @@ from object import Object
 import pygame.locals as local
 
 class Unit(Object):
-    def __init__(self, x,y,speed):
+    def __init__(self, x,y):
         Object.__init__(self)
         self.pos = pygame.math.Vector2(x,y)
-        self.speed = pygame.math.Vector2(0,0)
-        #ты не подаешь никуда speed. Либо она не нужна, лабо тогда её в вектор
+        self._speed = pygame.math.Vector2(speed,speed)
 
 class Unit_Controller:
     def __init__(self,units):

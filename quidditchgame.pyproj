@@ -56,9 +56,10 @@
     <Content Include="Fonts\ParryHotter.ttf" />
     <Content Include="Photos\quaffle.png" />
     <Content Include="Photos\Rave_block.png" />
+    <Content Include="Photos\snitch.png" />
+    <Content Include="Photos\snitch_redone.png" />
     <Content Include="Text files\score.txt" />
     <Content Include="Photos\Slyth_block.png" />
-    <Content Include="Photos\snitch.png" />
     <Content Include="Text files\surfmapp.txt" />
   </ItemGroup>
   <ItemGroup>
