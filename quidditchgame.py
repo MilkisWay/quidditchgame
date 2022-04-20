@@ -2,12 +2,9 @@ import pygame
 import os
 import sys
 import random
+sys.path.append(r'/Users/milan/Documents/Uni/Python/Game/GameUni/Milana')
 from pygame.locals import *
-from basicgame import *
-from quaffle import QuaffleController, QuaffleModel, QuaffleView
-from Milana/snitch import *
-#import everything in here
-
+from basicgame import basicgame
 
 class PlayGameState(GameState):
     def __init__(self,game,gameOverState,gameWinState):
@@ -17,8 +14,8 @@ class PlayGameState(GameState):
         self.player_controller = None
         self.snitch_controller = None
         self.quaffle_controller = None
-        self.gameOverState = gameOverState
-        self.gameWinState = gameWinState #dnk but somwhere have to save results to a file
+        self.gameOverState = gameOverStatebut
+        self.gameWinState = gameWinState #dnk  somwhere have to save results to a file
         #and state for records and settings for speed and random
         self.initialise()
     def initialise(self):

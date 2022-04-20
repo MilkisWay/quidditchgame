@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>52e1a3e5-4968-4294-971b-8036a926f594</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>BasicGame\main.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,36 +22,24 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Milana\ball.py" />
-    <Compile Include="BasicGame\basicgame.py" />
-    <Compile Include="Milana\bludger.py" />
-    <Compile Include="Sveta\catch_ball.py" />
-    <Compile Include="Sveta\chaser.py" />
-    <Compile Include="Milana\collision.py" />
-    <Compile Include="Sveta\controller.py" />
-    <Compile Include="Sveta\controller_hunter.py" />
-    <Compile Include="Sveta\FSM_base.py" />
-    <Compile Include="Sveta\FSM_hunter.py" />
-    <Compile Include="Sveta\game.py" />
-    <Compile Include="Milana\ground.py" />
-    <Compile Include="BasicGame\interstitial.py" />
-    <Compile Include="BasicGame\main.py" />
-    <Compile Include="Milana\mapp.py" />
-    <Compile Include="BasicGame\menu.py" />
-    <Compile Include="Milana\mode.py" />
-    <Compile Include="Milana\movableobject.py" />
-    <Compile Include="Milana\object.py" />
-    <Compile Include="Sveta\player.py" />
-    <Compile Include="Milana\quaffle.py" />
-    <Compile Include="BasicGame\quidditchgame.py" />
-    <Compile Include="Milana\score.py" />
-    <Compile Include="Sveta\Seeker.py" />
-    <Compile Include="Milana\snitch.py" />
-    <Compile Include="Sveta\Team.pyw" />
-    <Compile Include="Sveta\team_controller.py" />
-    <Compile Include="Milana\throwableobject.py" />
-    <Compile Include="Milana\tiles.py" />
-    <Compile Include="Milana\tile_image_emun.py" />
+    <Compile Include="mapp.py" />
+    <Compile Include="ball.py" />
+    <Compile Include="basicgame.py" />
+    <Compile Include="bludger.py" />
+    <Compile Include="stuff.py" />
+    <Compile Include="collision.py" />
+    <Compile Include="interstitial.py" />
+    <Compile Include="main.py" />
+    <Compile Include="menu.py" />
+    <Compile Include="mode.py" />
+    <Compile Include="movableobject.py" />
+    <Compile Include="object.py" />
+    <Compile Include="quaffle.py" />
+    <Compile Include="quidditchgame.py" />
+    <Compile Include="score.py" />
+    <Compile Include="snitch.py" />
+    <Compile Include="throwableobject.py" />
+    <Compile Include="tile_image_emun.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.10" />
@@ -73,11 +61,8 @@
     <Content Include="Text files\surfmapp.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BasicGame\" />
     <Folder Include="Fonts\" />
-    <Folder Include="Milana\" />
     <Folder Include="Music\" />
-    <Folder Include="Sveta\" />
     <Folder Include="Text files\" />
     <Folder Include="Photos\" />
   </ItemGroup>
