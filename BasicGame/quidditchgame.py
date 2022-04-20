@@ -5,7 +5,7 @@ import random
 from pygame.locals import *
 from basicgame import *
 from quaffle import QuaffleController, QuaffleModel, QuaffleView
-from snitch import *
+from Milana/snitch import *
 #import everything in here
 
 
