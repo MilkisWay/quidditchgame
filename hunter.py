@@ -38,12 +38,6 @@ class Hunter(Player):
                 #print(quaffle.pos.x, quaffle.pos.y)
                 print('check')
 
-    def throw(self,quaffle):
-        bullet = Bullet(self.rect.centerx, self.rect.top)
-        all_sprites.add(bullet)
-        bullets.add(bullet)
-
-
 class Hunter_controller(Player_controller):
     def __init__(self,Hunter):
         Player_controller.__init__(self)
