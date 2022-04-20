@@ -14,7 +14,8 @@ class SnitchModel(BallModel):
         self.image = pygame.Surface((8,8))
         self.image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/snitch.png')
         self._pos = pygame.math.Vector2(x,y)
-        self.rect = self.image.get_rect(topleft = self._pos)   
+        self.rect = self.image.get_rect(topleft = self._pos)
+        self.rect = pygame.transform.scale(self.image,(8,8))
         self._gameStop = False
         self._speed = pygame.math.Vector2(speed,speed)
         #self._mode = mode.get_Game_Mode()
