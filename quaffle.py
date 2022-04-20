@@ -14,6 +14,7 @@ class QuaffleModel(BallModel):
      self._pos = pygame.math.Vector2(x,y)
      self.image = pygame.Surface((8,8))
      self.rect = self.image.get_rect()
+     self.rect = pygame.transform.scale(self.image,(8,8))
      self._speed = pygame.math.Vector2(speed,speed)
      self._possession = False 
      #self._mass = mode.get_Game_Mode()
@@ -35,8 +36,9 @@ class QuaffleController(object):
                 self._ball.set_Coord_x(screen_width//2)#add
 
     def update(self,dt):
-        if self._ball.get_possession_statues == False:
-            self._ball.set_Coord_y(self.ball.get_Coord_y()-10)
+         self._ball.set_Coord_y(self._ball.get_Coord_y()+10)
+         if self._ball.get_Coord_y() >=1080:
+                self._ball.set_Coord_y(0+100)
 
 
     def got_caught(a):

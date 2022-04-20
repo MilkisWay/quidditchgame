@@ -12,7 +12,7 @@ class SnitchModel(BallModel):
     def __init__(self, x,y, seeker1 =1, seeker2=1, speed =5):
         super(SnitchModel,self).__init__(x,y,speed)
         self.image = pygame.Surface((8,8))
-        self.image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/snitch.png')
+        self.image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/snitch_redone.png')
         self._pos = pygame.math.Vector2(x,y)
         self.rect = self.image.get_rect(topleft = self._pos)
         self.rect = pygame.transform.scale(self.image,(8,8))
