@@ -38,7 +38,7 @@ class Hunter(Player):
                 #print(quaffle.pos.x, quaffle.pos.y)
                 print('check')
 
-    def throw(self,quaffle): #Откуда взялиьс пули? Вообще не понятно, что
+    def throw(self,quaffle):
         bullet = Bullet(self.rect.centerx, self.rect.top)
         all_sprites.add(bullet)
         bullets.add(bullet)
