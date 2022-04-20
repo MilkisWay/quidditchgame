@@ -8,7 +8,7 @@ class InterstitialState(GameState):
     def __init__(self, game, msg,waitTimeMs, nextState):
         super(InterstitialState,self).__init__(game)
         self.nextState = nextState
-        self.font = pygame.font.Font('ParryHotter.ttf',100)
+        self.font = pygame.font.Font('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Fonts/ParryHotter.ttf',100)
         self.message = msg
         self.waitTimer = waitTimeMs
 

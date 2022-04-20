@@ -5,7 +5,7 @@ import math
 from pygame.locals import *
 from ball import *
 from mode import *
-from mapp import *
+
 
 #add mode to an object as an attribute and only access
 class QuaffleModel(BallModel):
@@ -31,8 +31,8 @@ class QuaffleController(object):
                 self._ball.set_Coord_y(screen_height-100)
                 self._ball.set_Coord_x(screen_width//2)
             elif self._ball.get_Coord_x() <=0 and self._ball.get_Coord_x()>=1080:
-                self._ball.set_Coord_y(screen_height-100)
-                self._ball.set_Coord_x(screen_width//2)
+                self._ball.set_Coord_y(screen_height-100)#add 
+                self._ball.set_Coord_x(screen_width//2)#add
 
     def update(self,dt):
         if self._ball.get_possession_statues == False:
@@ -45,6 +45,6 @@ class QuaffleController(object):
 class QuaffleView(object):#not done
     def __init__(self, quaffleController):
         self._quafflecontroller = quaffleController
-        self._image=pygame.image.load('quaffle.png')
+        self._image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/quaffle.png')
     def render(self, surface):
         surface.blit(self._image,(self._quafflecontroller._ball.get_Coord_x(),self._quafflecontroller._ball.get_Coord_y(),32,32))

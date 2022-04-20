@@ -2,9 +2,10 @@ import pygame
 import os
 import sys
 import random
-sys.path.append(r'/Users/milan/Documents/Uni/Python/Game/GameUni/Milana')
 from pygame.locals import *
-from basicgame import basicgame
+from basicgame import *
+from snitch import *
+from quaffle import *
 
 class PlayGameState(GameState):
     def __init__(self,game,gameOverState,gameWinState):
@@ -14,7 +15,7 @@ class PlayGameState(GameState):
         self.player_controller = None
         self.snitch_controller = None
         self.quaffle_controller = None
-        self.gameOverState = gameOverStatebut
+        self.gameOverState = gameOverState
         self.gameWinState = gameWinState #dnk  somwhere have to save results to a file
         #and state for records and settings for speed and random
         self.initialise()

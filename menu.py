@@ -7,11 +7,11 @@ from basicgame import *
 class MainMenuState(GameState):
     def __init__(self,game):
         super(MainMenuState,self).__init__(game)
-        self.font = pygame.font.Font('MagicSchoolOne.ttf',80)
+        self.font = pygame.font.Font('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Fonts/MagicSchoolOne.ttf',80)
         self.playGameState = None
         self.index = 0 #currently selected item is stored in 'index'
-        self.image = pygame.image.load('MenuBack.jpg')
-        self.image1 = pygame.image.load('menuname.png')
+        self.image = pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/MenuBack.jpg')
+        self.image1 = pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/menuname.png')
         self.inputTick = 0
         self.menu_width=1920
         self.menu_height=1080

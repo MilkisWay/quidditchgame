@@ -2,8 +2,6 @@ import pygame
 import os
 import sys
 from pygame.locals import *
-from mapp import *
-from ground import *
 
 class GameState(object):
     def __init__(self, game):
@@ -22,9 +20,8 @@ class BasicGame(object):
         pygame.init()
         pygame.display.set_caption(gameName);
         self.fpsClock = pygame.time.Clock()
-        self.mainwindow = pygame.display.set_mode((screen_width,screen_height),HWSURFACE|DOUBLEBUF|FULLSCREEN,32)
-        self.background = pygame.image.load('Background1.jpg')
-        self.ground = Ground(surface_map,self.mainwindow)
+        self.mainwindow = pygame.display.set_mode((1920,1080),HWSURFACE|DOUBLEBUF|FULLSCREEN,32)
+        self.background = pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/Background1.jpg')
         self.currentState = None
 
     def changeState(self,newState):
@@ -62,6 +59,6 @@ class BasicGame(object):
 
             if self.currentState!=None:
                  self.currentState.render(self.mainwindow)
-                 #self.ground.run()
+
             pygame.display.update()
             self.fpsClock.tick(60)
