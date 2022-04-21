@@ -22,7 +22,9 @@ class Hunter(Player):
         self.speed=pygame.math.Vector2(speed,speed)#Тоже, что и в охотнике
         self.rect = self.image.get_rect()
 
-    def checkQuaffle(self, quaffle):#Во-первых все взаимодействия в контроллере, во-вторых этим ты не управляешь
+    def checkQuaffle(self, quaffle):
+        pass
+    def nearest_hunter()://distance to nearest hunter
         pass
 
 class Hunter_controller(Player_controller):

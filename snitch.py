@@ -47,16 +47,15 @@ class SnitchModel(BallModel):
 
 class SnitchView(object):#not done
     def __init__(self):
-        self.image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/snitch_redone.png')
-    def getImage():
-        return self.image
+        self._image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/snitch_redone.png')
+    def getImage(self):
+        return self._image
     
 
 class SnitchController(object):
     def __init__(self,ball:SnitchModel,ballview:SnitchView):
         self._ball = ball
-        #self._image=ballview.getImage
-        self._image = ballview.image
+        self._image=ballview.getImage()
 
     def update(self,dt):
         self._ball.set_Coord_x(self._ball.get_Speed_x()*dt*random.randint(0,30))

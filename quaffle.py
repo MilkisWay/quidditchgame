@@ -21,16 +21,16 @@ class QuaffleModel(BallModel):
 
 class QuaffleView(object):#not done
     def __init__(self):
-        self.image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/quaffle.png')
-    def getImage():
-        return self.image
+        self._image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/quaffle.png')
+    def getImage(self):
+        return self._image
     
 
 
 class QuaffleController(object):
     def __init__(self,ball:QuaffleModel,ballview:QuaffleView):
         self._ball = ball
-        self._image=ballview.image
+        self._image=ballview.getImage()
 
     def fly_from_throw(self,time,angle):#time from Chaserpower
         if self._ball.get_possession_statues is False:
