@@ -11,8 +11,7 @@ from collision import CollisionController
 class SnitchModel(BallModel):
     def __init__(self, x,y, seeker1 =1, seeker2=1, speed =5):
         super(SnitchModel,self).__init__(x,y,speed)
-        self.image = pygame.Surface((8,8))
-        self.image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/snitch_redone.png')
+        self.image = pygame.Surface((8,8)) 
         self._pos = pygame.math.Vector2(x,y)
         self.rect = self.image.get_rect(topleft = self._pos)
         self.rect = pygame.transform.scale(self.image,(8,8))
@@ -45,15 +44,26 @@ class SnitchModel(BallModel):
     def get_image(self):
         return self.image
 
+
+class SnitchView(object):#not done
+    def __init__(self):
+        self.image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/snitch_redone.png')
+    def getImage():
+        return self.image
+    
+
 class SnitchController(object):
-    def __init__(self,ball:SnitchModel):
+    def __init__(self,ball:SnitchModel,ballview:SnitchView):
         self._ball = ball
+        #self._image=ballview.getImage
+        self._image = ballview.image
 
     def update(self,dt):
-        
-        
         self._ball.set_Coord_x(self._ball.get_Speed_x()*dt*random.randint(0,30))
         self._ball.set_Coord_y(self._ball.get_Speed_y()*dt*random.randint(0,40))
+
+    def render(self, surface):
+        surface.blit(self._image,(self._ball.get_Coord_x(),self._ball.get_Coord_y(),32,32))
     
     def call_Collision_Controller(self):
         collision_Controller=CollisionController(self._ball,self.computer_seeker)
@@ -61,10 +71,5 @@ class SnitchController(object):
             self._ball.set_possession_statues(True)
             self._ball.set_who_possess(self.computer_seeker)
 
-class SnitchView(object):#not done
-    def __init__(self, snitchController):
-        self._snitchcontroller = snitchController
-        self._image=self._snitchcontroller._ball.get_image()
-    def render(self, surface):
-        surface.blit(self._image,(self._snitchcontroller._ball.get_Coord_x(),self._snitchcontroller._ball.get_Coord_y(),32,32))
+
 

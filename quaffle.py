@@ -19,34 +19,38 @@ class QuaffleModel(BallModel):
      self._possession = False 
      #self._mass = mode.get_Game_Mode()
 
+class QuaffleView(object):#not done
+    def __init__(self):
+        self.image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/quaffle.png')
+    def getImage():
+        return self.image
+    
+
 
 class QuaffleController(object):
-    def __init__(self,ball:QuaffleModel):
+    def __init__(self,ball:QuaffleModel,ballview:QuaffleView):
         self._ball = ball
+        self._image=ballview.image
 
     def fly_from_throw(self,time,angle):#time from Chaserpower
         if self._ball.get_possession_statues is False:
-            self._ball.set_Coord_x(self._ball.get_Coord_x()+self._ball.get_Speed_x()*time)
-            self._ball.set_Coord_y(self._ball.get_Coord_y()+self._ball.get_Speed_y()*time*math.tan(angle) - (self.ball.get_g()*(time**2))//2)
-            if self._ball.get_Coord_y() <=0:
-                self._ball.set_Coord_y(screen_height-100)
-                self._ball.set_Coord_x(screen_width//2)
-            elif self._ball.get_Coord_x() <=0 and self._ball.get_Coord_x()>=1080:
-                self._ball.set_Coord_y(screen_height-100)#add 
-                self._ball.set_Coord_x(screen_width//2)#add
+            if 0<self._ball.get_Coord_x()<1920 and 0<self._ball.get_Coord_y()<1080:
+                self._ball.set_Coord_x(self._ball.start_pos_x()+self._ball.get_Speed_x()*time*math.cos(angle))
+                self._ball.set_Coord_y(self._ball.start_pos_y()+self._ball.get_Speed_y()*time*math.sin(angle) - (self._ball.get_g()*(time**2))//2)
+        if self._ball.get_Coord_y()<0:
+            self.updat2e(time)
 
     def update(self,dt):
          self._ball.set_Coord_y(self._ball.get_Coord_y()+10)
          if self._ball.get_Coord_y() >=1080:
                 self._ball.set_Coord_y(0+100)
 
+    def render(self,surface):
+        surface.blit(self._image,(self._ball.get_Coord_x(),self._ball.get_Coord_y(),32,32))
 
     def got_caught(a):
         pass
 
-class QuaffleView(object):#not done
-    def __init__(self, quaffleController):
-        self._quafflecontroller = quaffleController
-        self._image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/quaffle.png')
-    def render(self, surface):
-        surface.blit(self._image,(self._quafflecontroller._ball.get_Coord_x(),self._quafflecontroller._ball.get_Coord_y(),32,32))
+
+
+   

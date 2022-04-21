@@ -7,7 +7,7 @@ class Team(pygame.sprite.Group):
         #self.type = team_type
 
     def _findPlayer(self, position): #position: hunter or seeker
-        for player in self: #Какой игрок в селф? Что просто селф?
+        for player in self: 
             #пробегаем игроками по нашей self команде, если есть игрок на заданной позиции, то возвращаем его
             if player.type == position:
                 return player
