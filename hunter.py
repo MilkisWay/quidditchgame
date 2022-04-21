@@ -25,7 +25,7 @@ class Hunter(Player):
         self.speed=pygame.math.Vector2(0,0)#Тоже, что и в охотнике
         self.rect = self.image.get_rect()
 
-    def checkQuaffle(self, quaffle):#Во-первых все взаимодействия в контроллере, во-вторых этим ты не управляешь
+    def checkQuaffle(self, quaffle):#Во-первых все взаимодействия в контроллере, во-вторых этим ты не управляешь и все переменные внутри защищённые, ты просто получишь ошибку
         if self.collision_Detection(quaffle):
             if quaffle.possession==False:
                 self.quaffle=quaffle
