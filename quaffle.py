@@ -27,14 +27,17 @@ class QuaffleController(object):
 
     def update(self,time):#time from Chaserpower
         angle = 45
-        self._ball.set_Coord_x(self._ball.get_Coord_x()+self._ball.get_Speed_x()*time)
+        self._ball.set_Coord_x(self._ball.get_Coord_x()+1)#self._ball.get_Speed_x()*time)
         self._ball.set_Coord_y(self._ball.get_Coord_y()+self._ball.get_Speed_y()*time*math.tan(angle) - (self._ball.get_g()*(time**2))//2)
-        if self._ball.get_Coord_y() >=1080:
+        if self._ball.get_Coord_y() >=1080 or self._ball.get_Coord_y()<=0:
             self._ball.set_Coord_y(0+100)
             self._ball.set_Coord_x(1920//2)
-        elif self._ball.get_Coord_x() <=0 and self._ball.get_Coord_x()>=1920:
+        elif self._ball.get_Coord_x() <=0 or self._ball.get_Coord_x()>=1920:
             self._ball.set_Coord_y(0+100)
             self._ball.set_Coord_x(1920//2)
+        print(self._ball.get_Coord_x())
+        print(self._ball.get_Coord_y())
+        angle=angle-1
 
     def updat2e(self,dt):
          self._ball.set_Coord_y(self._ball.get_Coord_y()+10)

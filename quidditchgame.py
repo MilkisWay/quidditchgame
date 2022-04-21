@@ -20,7 +20,7 @@ class PlayGameState(GameState):
         #and state for records and settings for speed and random
         self.initialise()
     def initialise(self):
-        quaffle = QuaffleModel(100,100,1)
+        quaffle = QuaffleModel(100,100,0.025)
         snitch = SnitchModel(random.randint(10,1000),random.randint(10,1900))
         self.snitch_controller = SnitchController(snitch)
         self.quaffle_controller = QuaffleController(quaffle)
@@ -31,6 +31,7 @@ class PlayGameState(GameState):
     def update(self,gameTime):
         for i in self.controllers:
             i.update(gameTime)
+            print("GameTime",gameTime)
         if self.snitch_controller._ball.endGame()==True:
             if self.snitch_controller._ball.get_who_posses == self.snitch_controller._ball.player_seeker:
                 self.game.changeState(self.gameWinState)
