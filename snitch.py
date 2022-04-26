@@ -45,14 +45,14 @@ class SnitchModel(BallModel):
         return self.image
 
 
-class SnitchView(object):#not done
+class SnitchView(BallView):#not done
     def __init__(self):
         self._image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/snitch_redone.png')
     def getImage(self):
         return self._image
     
 
-class SnitchController(object):
+class SnitchController(BallController):
     def __init__(self,ball:SnitchModel,ballview:SnitchView):
         self._ball = ball
         self._image=ballview.getImage()

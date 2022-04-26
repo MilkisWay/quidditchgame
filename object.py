@@ -36,3 +36,9 @@ class Object(pygame.sprite.Sprite):
 
      def get_distance(self,object1):
         return pygame.math.Vector2(self.get_Coord()).distance_to(object1.get_Coord())
+
+class ObjectView(object):
+    pass
+
+class ObjectController(object):
+    pass

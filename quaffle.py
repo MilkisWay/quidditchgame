@@ -19,7 +19,7 @@ class QuaffleModel(BallModel):
      self._possession = False 
      #self._mass = mode.get_Game_Mode()
 
-class QuaffleView(object):#not done
+class QuaffleView(BallView):#not done
     def __init__(self):
         self._image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/quaffle.png')
     def getImage(self):
@@ -27,7 +27,7 @@ class QuaffleView(object):#not done
     
 
 
-class QuaffleController(object):
+class QuaffleController(BallController):
     def __init__(self,ball:QuaffleModel,ballview:QuaffleView):
         self._ball = ball
         self._image=ballview.getImage()

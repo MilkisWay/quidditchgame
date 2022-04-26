@@ -2,9 +2,9 @@ import pygame
 import os
 import sys
 from pygame.locals import *
-from movableobject import Movable_Object
+from movableobject import *
 
-class BallModel(Movable_Object):
+class BallModel(MovableObject):
     _g=9.8
     def __init__ (self,x,y,speed):
         self._pos = pygame.math.Vector2(x,y)
@@ -22,7 +22,7 @@ class BallModel(Movable_Object):
     def get_possession_statues(self):
         return self._possession
 
-class BallController(object):
+class BallController(MovableObjectController):
     def __init__(self):
         self.balls = []
 
@@ -32,7 +32,7 @@ class BallController(object):
     def fly():
         pass
 
-class BallView(pygame.sprite.Sprite):
+class BallView(MovableObjectView):
     def __init__(self, ballController, img):
         self.BallController = ballController
         self.image = pygame.image.load(img)
