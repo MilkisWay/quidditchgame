@@ -25,6 +25,9 @@
     <Compile Include="ball.py" />
     <Compile Include="basicgame.py" />
     <Compile Include="bludger.py" />
+    <Compile Include="circle_for_seeker.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="collision.py" />
     <Compile Include="hunter.py" />
     <Compile Include="interstitial.py" />
@@ -36,7 +39,9 @@
     <Compile Include="player.py" />
     <Compile Include="quaffle.py" />
     <Compile Include="quidditchgame.py" />
+    <Compile Include="ring.py" />
     <Compile Include="score.py" />
+    <Compile Include="seeker.py" />
     <Compile Include="snitch.py" />
     <Compile Include="team.py" />
     <Compile Include="throwableobject.py" />

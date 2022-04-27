@@ -21,7 +21,7 @@ class BasicGame(object):
         pygame.display.set_caption(gameName);
         self.fpsClock = pygame.time.Clock()
         self.mainwindow = pygame.display.set_mode((1920,1080),HWSURFACE|DOUBLEBUF|FULLSCREEN,32)
-        self.background = pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/Background1.jpg')
+        self.background = pygame.image.load('Background1.jpg')
         self.currentState = None
 
     def changeState(self,newState):
@@ -61,4 +61,4 @@ class BasicGame(object):
                  self.currentState.render(self.mainwindow)
 
             pygame.display.update()
-            self.fpsClock.tick(60)
+            self.fpsClock.tick(40)

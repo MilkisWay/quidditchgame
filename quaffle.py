@@ -47,6 +47,6 @@ class QuaffleController(object):
 class QuaffleView(object):#not done
     def __init__(self, quaffleController):
         self._quafflecontroller = quaffleController
-        self._image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/quaffle.png')
-    def render(self, surface):
-        surface.blit(self._image,(self._quafflecontroller._ball.get_Coord_x(),self._quafflecontroller._ball.get_Coord_y(),32,32))
+        #self._image=pygame.image.load('quaffle.png')
+    #def render(self, surface):
+        #surface.blit(self._image,(self._quafflecontroller._ball.get_Coord_x(),self._quafflecontroller._ball.get_Coord_y(),32,32))
