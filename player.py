@@ -37,12 +37,6 @@ class Player(Unit):
     def get_pointer(self):
         return self._pointer
 
-    def set_speed_x(self,x):
-        self._speed.x=x
-
-    def get_speed_x(self):
-        return self._speed.x
-
 class Player_controller:
     def __init__(self,Player):
         self.players=[]
