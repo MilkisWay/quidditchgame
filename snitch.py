@@ -58,8 +58,31 @@ class SnitchController(BallController):
         self._image=ballview.getImage()
 
     def update(self,dt):
-        self._ball.set_Coord_x(self._ball.get_Speed_x()*dt*random.randint(0,30))
-        self._ball.set_Coord_y(self._ball.get_Speed_y()*dt*random.randint(0,40))
+        num = random.randint(1,4)
+        if 1920 <= self._ball.get_Coord_x() or self._ball.get_Coord_x()<=0 or 0>=self._ball.get_Coord_y() or self._ball.get_Coord_y()>=1080:
+            self._ball.set_Coord_x(500)
+            self._ball.set_Coord_y(500)
+        elif num == 1:
+            self._ball.set_Coord_x(self._ball.get_Coord_x() + random.randint(1,100))
+            self._ball.set_Coord_y(self._ball.get_Coord_y())
+        elif num == 2:
+            self._ball.set_Coord_x(self._ball.get_Coord_x() - random.randint(1,100))
+            self._ball.set_Coord_y(self._ball.get_Coord_y())
+        elif num == 3:
+            self._ball.set_Coord_x(self._ball.get_Coord_x())
+            self._ball.set_Coord_y(self._ball.get_Coord_y() + random.randint(1,100))
+        elif  num == 4:
+            self._ball.set_Coord_x(self._ball.get_Coord_x())
+            self._ball.set_Coord_y(self._ball.get_Coord_y() - random.randint(1,100))
+        elif num == 5:
+            self._ball.set_Coord_x(self._ball.get_Coord_x() - random.randint(1,100))
+            self._ball.set_Coord_y(self._ball.get_Coord_y() + random.randint(1,100))
+        elif num == 6:
+            self._ball.set_Coord_x(self._ball.get_Coord_x() + random.randint(1,100))
+            self._ball.set_Coord_y(self._ball.get_Coord_y() - random.randint(1,100))
+        elif num == 7:
+            self._ball.set_Coord_x(random.randint(3,1900))
+            self._ball.set_Coord_y(random.randint(10,1050))
 
     def render(self, surface):
         surface.blit(self._image,(self._ball.get_Coord_x(),self._ball.get_Coord_y(),32,32))

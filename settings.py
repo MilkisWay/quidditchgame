@@ -8,11 +8,15 @@ class SettingsState(GameState):
     def __init__(self,game):
         super(SettingsState,self).__init__(game)
         self.font = pygame.font.Font('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Fonts/MagicSchoolOne.ttf',80)
+        self.mainMenuState = None
         self.index = 0
+        self.image = pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/MenuBack.jpg')
         self.mode = 1
         self.inputTick = 0
-        self.background = pygame.image.load("Add")
         self.modeItems = ['Easy','Medium','Hard','Death']
+
+    def setMainMenu(self,state):
+        self.mainMenuState = state
 
     def update(self, gameTime):
         keys = pygame.key.get_pressed()
@@ -33,12 +37,26 @@ class SettingsState(GameState):
         if (keys[K_RETURN]):
             if self.index == 3:
                 self.mode = 1
+                self.game.changeState(self.mainMenuState)
             elif self.index == 2:
                 self.mode = 2
+                self.game.changeState(self.mainMenuState)
             elif self.index == 1:
                 self.mode = 3
-            elif self.index == 1:
+                self.game.changeState(self.mainMenuState)
+            elif self.index == 0:
                 self.mode = 4
+                self.game.changeState(self.mainMenuState)
 
-    def render():
-        pass
+    def render(self,surface):
+        surface.blit(self.image,(0,0))
+        count=0
+        y=1080//2+50
+        for item in self.modeItems:
+            itemText = ' '
+            if count == self.index:
+                itemText = '>'
+            itemText += item
+            surface.blit(self.font.render(itemText,True,(237, 213, 79)),(500,y))
+            y -= 100
+            count += 1 

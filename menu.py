@@ -9,6 +9,7 @@ class MainMenuState(GameState):
         super(MainMenuState,self).__init__(game)
         self.font = pygame.font.Font('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Fonts/MagicSchoolOne.ttf',80)
         self.playGameState = None
+        self.settingsState = None
         self.index = 0 #currently selected item is stored in 'index'
         self.image = pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/MenuBack.jpg')
         self.image1 = pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/menuname.png')
@@ -24,6 +25,9 @@ class MainMenuState(GameState):
 
     def setPlayState(self,state):
         self.playGameState = state
+
+    def setSettingsState(self,state):
+        self.settingsState = state
 
     def update(self, gameTime):
         #pygame.mixer.music.load('Harry Potter.ogg')
@@ -47,7 +51,7 @@ class MainMenuState(GameState):
             if self.index == 3:
                 self.game.changeState(None)#Exit the game
             elif self.index == 2:
-                self.game.changeState(None)#add Settings state
+                self.game.changeState(self.settingsState)#add Settings state
             elif self.index == 1:
                 self.game.changeState(None)#add state to read reacords
             elif self.index == 0:

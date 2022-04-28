@@ -18,3 +18,6 @@ class CollisionController(object):
         b = self._collision_detected
         self.collision_detected = False
         return b
+    #def collision(self,objects):
+        #for i in objects:
+            #if i.
