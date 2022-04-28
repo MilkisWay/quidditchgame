@@ -36,6 +36,7 @@
     <Compile Include="player.py" />
     <Compile Include="quaffle.py" />
     <Compile Include="quidditchgame.py" />
+    <Compile Include="records.py" />
     <Compile Include="score.py" />
     <Compile Include="settings.py" />
     <Compile Include="snitch.py" />
