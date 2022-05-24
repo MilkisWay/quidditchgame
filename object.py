@@ -5,10 +5,11 @@ from pygame.locals import *
 
 class Object(pygame.sprite.Sprite):
      def __init__ (self,x,y):
+        pygame.sprite.Sprite.__init__(self)
         self._pos = pygame.math.Vector2(x,y)
         self._startpos = pygame.math.Vector2(x,y)
-        self.sprite
-        self.rect = self.sprite.get_rect()
+        self.image = pygame.Surface((50,50))
+        self.rect = self.image.get_rect()
 
      def start_pos_x(self):
          return self._startpos.x
@@ -17,7 +18,7 @@ class Object(pygame.sprite.Sprite):
          return self._startpos.y
 
      def set_Coord(self,x,y):
-         self._pos=[x,y]
+         self._pos = pygame.math.Vector2(x,y)
 
      def get_Coord(self):
         return self._pos

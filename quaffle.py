@@ -1,56 +1,68 @@
-import pygame
+﻿import pygame
 import os
 import sys
 import math
+import random
 from pygame.locals import *
 from ball import *
 from mode import *
 
 
-#add mode to an object as an attribute and only access
 class QuaffleModel(BallModel):
     def __init__(self, x,y, speed):
-     super(QuaffleModel,self).__init__(x,y, speed)
-     self._pos = pygame.math.Vector2(x,y)
-     self.image = pygame.Surface((8,8))
-     self.rect = self.image.get_rect()
-     self.rect = pygame.transform.scale(self.image,(8,8))
-     self._speed = pygame.math.Vector2(speed,speed)
-     self._possession = False 
-     #self._mass = mode.get_Game_Mode()
+        super(QuaffleModel,self).__init__(x,y, speed)
+        self._pos = pygame.math.Vector2(x,y)
+        self.image = pygame.Surface((8,8))
+        self.rect = self.image.get_rect()
+        self.rect = pygame.transform.scale(self.image,(8,8))
+        self.radius=8
+        self._speed = pygame.math.Vector2(speed,speed)
+        self.possession = False
+        self.quaffle_holder_type=None
 
-class QuaffleView(BallView):#not done
+    def change_holder_type(self,line):
+        self.quaffle_holder_type=line
+    #в контроллере вызывает при столкновении и меняет два параметра на другие
+    def none_is_posessing(self):
+        self._possession = False
+        self.quaffle_holder_type=None
+    #если клавиша, то игрок выпустил мяч и владение стало None collision controller
+
+class QuaffleView(BallView):
     def __init__(self):
         self._image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/quaffle.png')
     def getImage(self):
         return self._image
-    
-
 
 class QuaffleController(BallController):
     def __init__(self,ball:QuaffleModel,ballview:QuaffleView):
-        self._ball = ball
+        self.ball = ball
         self._image=ballview.getImage()
+        self._hunter=None
+        self.hunter2=None
 
-    def fly_from_throw(self,time,angle):#time from Chaserpower
-        if self._ball.get_possession_statues is False:
-            if 0<self._ball.get_Coord_x()<1920 and 0<self._ball.get_Coord_y()<1080:
-                self._ball.set_Coord_x(self._ball.start_pos_x()+self._ball.get_Speed_x()*time*math.cos(angle))
-                self._ball.set_Coord_y(self._ball.start_pos_y()+self._ball.get_Speed_y()*time*math.sin(angle) - (self._ball.get_g()*(time**2))//2)
-        if self._ball.get_Coord_y()<0:
-            self.updat2e(time)
+    def is_caught_by_hunter(self,hunter):
+        self._hunter=hunter
+        self.ball.change_holder_type(self._hunter.type)
+
+    def radius_of_hunters(self,hunter):
+        self.hunter2=hunter
 
     def update(self,dt):
-         self._ball.set_Coord_y(self._ball.get_Coord_y()+10)
-         if self._ball.get_Coord_y() >=1080:
-                self._ball.set_Coord_y(0+100)
+        if self.ball.possession==True:
+            self.ball.set_Coord(self._hunter.get_Coord)
+
+        if self.ball.quaffle_holder_type!=None:
+            if self.hunter2!=None:
+                self.ball.set_Coord(self.hunter2.get_Coord)
+            else:
+                self.ball.set_Coord_y(self.ball.get_Coord_y()+10)
+                if self.ball.get_Coord_y() >=1080:
+                    self.ball.set_Coord_y(0+100)
+        else:
+             self.ball.set_Coord_y(self.ball.get_Coord_y()+10)
+             if self.ball.get_Coord_y() >=1080:
+                self.ball.set_Coord_y(0+100)
 
     def render(self,surface):
-        surface.blit(self._image,(self._ball.get_Coord_x(),self._ball.get_Coord_y(),32,32))
-
-    def got_caught(a):
-        pass
-
-
-
-   
+        surface.blit(self._image,(self.ball.get_Coord_x(),self.ball.get_Coord_y(),32,32))

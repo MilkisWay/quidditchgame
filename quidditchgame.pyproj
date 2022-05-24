@@ -32,13 +32,17 @@
     <Compile Include="menu.py" />
     <Compile Include="mode.py" />
     <Compile Include="movableobject.py" />
+    <Compile Include="nonmovableobject.py" />
     <Compile Include="object.py" />
     <Compile Include="player.py" />
     <Compile Include="quaffle.py" />
     <Compile Include="quidditchgame.py" />
     <Compile Include="records.py" />
+    <Compile Include="ring.py" />
     <Compile Include="score.py" />
+    <Compile Include="seeker.py" />
     <Compile Include="settings.py" />
+    <Compile Include="setup.py" />
     <Compile Include="snitch.py" />
     <Compile Include="team.py" />
     <Compile Include="throwableobject.py" />
@@ -60,6 +64,9 @@
     <Content Include="Photos\Rave_block.png" />
     <Content Include="Photos\snitch.png" />
     <Content Include="Photos\snitch_redone.png" />
+    <Content Include="player.png" />
+    <Content Include="ring.png" />
+    <Content Include="seeker.jpg" />
     <Content Include="Text files\score.txt" />
     <Content Include="Photos\Slyth_block.png" />
     <Content Include="Text files\surfmapp.txt" />

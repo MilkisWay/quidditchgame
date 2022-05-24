@@ -16,9 +16,11 @@ class GameState(object):
         pass
 
 class BasicGame(object):
-    def __init__(self, gameName):
+    def __init__(self, gameName,setup):
         pygame.init()
         pygame.display.set_caption(gameName);
+        self.screen_width=setup.screen_width
+        self.screen_height=setup.screen_height
         self.fpsClock = pygame.time.Clock()
         self.mainwindow = pygame.display.set_mode((1920,1080),HWSURFACE|DOUBLEBUF|FULLSCREEN,32)
         self.background = pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/Background1.jpg')

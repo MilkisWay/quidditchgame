@@ -2,13 +2,15 @@ import pygame
 import os
 import sys
 from pygame.locals import *
+from setup import Setup
 from basicgame import *
 from interstitial import *
 from menu import MainMenuState
 from quidditchgame import PlayGameState
 from settings import SettingsState
 
-quidditch = BasicGame("Harry Potter")
+basic = Setup()
+quidditch = BasicGame("Harry Potter",basic)
 mainMenuState = MainMenuState(quidditch)
 gameOverState = InterstitialState(quidditch, 'GAME OVER!', 5000, mainMenuState)
 gameWinState = InterstitialState(quidditch, 'CONGRATULATIONS!\n YOU WON!', 5000, mainMenuState)

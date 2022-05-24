@@ -3,8 +3,8 @@ from object import Object
 import pygame.locals as local
 
 class Unit(Object):
-    def __init__(self, x,y):
-        Object.__init__(self)
+    def __init__(self,x,y,speed):
+        Object.__init__(self,x,y)
         self.pos = pygame.math.Vector2(x,y)
         self._speed = pygame.math.Vector2(speed,speed)
 

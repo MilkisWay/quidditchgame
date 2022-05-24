@@ -1,38 +1,35 @@
-﻿import pygame
+import pygame
 import os
+import math
 import sys
+import random 
 from player import Player
 from player import Player_controller
 from pygame.locals import *
-from ball import BallController #Доступ только через контроллер. К данным шара так доступа нет
 from collision import CollisionController
 from quaffle import QuaffleController
 
-class Hunter(Player):
-
+class Seeker(Player):
     def __init__(self,x,y,speed,acceleration,activity,types):
         Player.__init__(self,x,y,speed,acceleration,activity,types)
-        self.type = 'hunter'
+        self.type = 'seeker'
         #self.team = team
+        #self.control=player\computer
         self.image = pygame.Surface((10, 10))
-        self.image=pygame.image.load('player.png')
+        self.image=pygame.image.load('seeker.jpg')
         self.activity=activity
         self.gameStop = False
         self.acceleration = acceleration
-        self.power = 10
-        self.quaffle = None
+        self.power = 0
+        self.snitch = None
         self.pos = pygame.math.Vector2(x,y)
         self.speed=pygame.math.Vector2(speed,speed)
         self.rect = self.image.get_rect()
+        self.quaffle=None
+        self.shoot_power=30
         self.type=types
-        self.main_radius=8
-        self.head_radius=4
-        self.dx1=5
-        self.dy1=-3
-        self.hand_radius=1
-        self.dx2=4
-        self.dy2=1
-    
+
+
     def search(self,  ball, time, ring):
         min_dist = 25
         max_dist = 100
@@ -60,12 +57,13 @@ class Hunter(Player):
             ball.update(time,ring)
             self.computer_update(time)
 
-class Hunter_View:
-    def __init__(self):
-        self.image=pygame.image.load('player.png')
 
-class Hunter_controller(Player_controller):
-    def __init__(self,player: Hunter, player_view: Hunter_View):
+class Seeker_View:
+    def __init__(self):
+        self.image=pygame.image.load('seeker.jpg')
+
+class Seeker_controller(Player_controller):
+    def __init__(self,player: Seeker, player_view: Seeker_View):
         Player_controller.__init__(self)
         self.player=player
         self.image=player_view.image
@@ -73,9 +71,13 @@ class Hunter_controller(Player_controller):
     def render(self,surface):
         surface.blit(self.image,self.player.rect)
 
+    def shoot(self):
+       pass
+
     def update(self,time):
+            print('seeker key update')
             self.player.update(time)
     
-   
     def computer_update(self,time):
             self.player.computer_update(time)
+  
