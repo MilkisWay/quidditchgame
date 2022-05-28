@@ -33,7 +33,7 @@ class PlayGameState(GameState):
 
     def initialise(self):
         ring = Ring(100,700)
-        quaffle = QuaffleModel(100,100,1)
+        quaffle = QuaffleModel(500,100,1)
         snitch = SnitchModel(random.randint(10,1000),random.randint(10,1900))
         hunter_computer=Hunter(100,100,1,1,0,2)
         hunter=Hunter(100,100,1,1,1,1)
@@ -70,8 +70,8 @@ class PlayGameState(GameState):
         self.collision_controller.add_hunter(self.hunter_controller)
         self.collision_controller.add_seeker(self.seeker_2_controller)
         self.collision_controller.add_seeker(self.seeker_controller)
-        self.collision_controller.add_score_for_team(score1)
-        self.collision_controller.add_score_for_team(score2)
+        #self.collision_controller.add_score_for_team(score1)
+        #self.collision_controller.add_score_for_team(score2)
         self.collision_controller.add_quaffle(self.quaffle_controller)
         self.collision_controller.add_snitch(self.snitch_controller)
         self.collision_controller.add_ring(self.ring_controller)
@@ -88,7 +88,7 @@ class PlayGameState(GameState):
         for i in self.controllers:
             i.update(gameTime)
         for i in self.computer_controller:
-            i.update(gameTime)
+            i.computer_update(gameTime)
         self.collision_controller.update(gameTime)
         #if self.snitch_controller._ball.endGame()==True:
             #if self.snitch_controller._ball.get_who_posses == self.snitch_controller._ball.player_seeker:

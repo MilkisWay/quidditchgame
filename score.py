@@ -11,4 +11,4 @@ class Score(object):
             file.write(str(self._score))
     def load_score_to_screen(self):
         with open('score1.txt', 'r') as file:
-               return file.readlines()
+            file.readline()

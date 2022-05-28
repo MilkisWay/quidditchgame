@@ -20,19 +20,23 @@ class Player(Unit):
 
                 keystate = pygame.key.get_pressed()
                 if keystate[pygame.K_LEFT]:
-                    self.speed.x = -3
-                if keystate[pygame.K_RIGHT]:
-                    self.speed.x = 3
-                if keystate[pygame.K_UP]:
-                    self.speed.y = -3
-                if keystate[pygame.K_DOWN]:
-                    self.speed.y = 3
-                self.rect.x += self.speed.x
+                    self.speed.x = -10
+                elif keystate[pygame.K_RIGHT]:
+                    self.speed.x= 10
+                elif keystate[pygame.K_UP]:
+                    self.speed.y = -10
+                elif keystate[pygame.K_DOWN]:
+                    self.speed.y = 10
+                else:
+                    self.speed.x=0
+                    self.speed.y=0
+                self.rect.x+=self.speed.x
                 self.rect.y+=self.speed.y
                 if self.pos.x>1200:
                     self.pos.x-=10
                 if self.pos.y>800:
                     self.pos.y-=10
+
 
     def computer_update(self,time):
             self.dy=random.randint(-1, 1)

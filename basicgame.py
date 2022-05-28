@@ -63,4 +63,4 @@ class BasicGame(object):
                  self.currentState.render(self.mainwindow)
 
             pygame.display.update()
-            self.fpsClock.tick(60)
+            self.fpsClock.tick(40)

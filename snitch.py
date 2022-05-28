@@ -6,7 +6,6 @@ import random
 from pygame.locals import *
 from ball import *
 from mode import *
-from collision import CollisionController
 
 class SnitchModel(BallModel):
     def __init__(self, x,y, seeker1 =1, seeker2=1, speed =5):
@@ -15,7 +14,7 @@ class SnitchModel(BallModel):
         self._pos = pygame.math.Vector2(x,y)
         self.rect = self.image.get_rect(topleft = self._pos)
         self.rect = pygame.transform.scale(self.image,(8,8))
-        self.radius=1
+        self.radius=50
         self._gameStop = False
         self._speed = pygame.math.Vector2(speed,speed)
         #self._mode = mode.get_Game_Mode()
@@ -86,6 +85,7 @@ class SnitchController(BallController):
 
     def render(self, surface):
         surface.blit(self._image,(self.ball.get_Coord_x(),self.ball.get_Coord_y(),32,32))
+        pygame.draw.circle(surface,220,(200,100),20)
     
 
 

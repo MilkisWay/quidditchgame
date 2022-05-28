@@ -32,6 +32,7 @@ class Hunter(Player):
         self.hand_radius=1
         self.dx2=4
         self.dy2=1
+        self.count=0
     
     def search(self,  ball, time, ring):
         min_dist = 25
@@ -75,7 +76,7 @@ class Hunter_controller(Player_controller):
 
     def update(self,time):
             self.player.update(time)
-    
+            self.player.count+=1
    
     def computer_update(self,time):
             self.player.computer_update(time)

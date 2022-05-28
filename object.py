@@ -17,6 +17,9 @@ class Object(pygame.sprite.Sprite):
      def start_pos_y(self):
          return self._startpos.y
 
+     def set_pos(self,pos):
+         self._pos=pos
+
      def set_Coord(self,x,y):
          self._pos = pygame.math.Vector2(x,y)
 
