@@ -7,10 +7,10 @@ from basicgame import *
 class SettingsState(GameState):
     def __init__(self,game):
         super(SettingsState,self).__init__(game)
-        self.font = pygame.font.Font('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Fonts/MagicSchoolOne.ttf',80)
+        self.font = pygame.font.Font('MagicSchoolOne.ttf',80)
         self.mainMenuState = None
         self.index = 0
-        self.image = pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/MenuBack.jpg')
+        self.image = pygame.image.load('MenuBack.jpg')
         self.mode = 1
         self.inputTick = 0
         self.modeItems = ['Easy','Medium','Hard','Death']

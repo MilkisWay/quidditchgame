@@ -25,7 +25,7 @@ class BasicGame(object):
         self.screen_height=self.setup.screen_height
         self.fpsClock = pygame.time.Clock()
         self.mainwindow = pygame.display.set_mode(( self.screen_width,self.screen_height),HWSURFACE|DOUBLEBUF|FULLSCREEN,32)
-        self.background = pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/Background1.jpg')
+        self.background = pygame.image.load('Background1.jpg')
         self.currentState = None
         self.screen_rect = self.mainwindow.get_rect()
 

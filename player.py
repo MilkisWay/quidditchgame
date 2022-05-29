@@ -5,21 +5,21 @@ from ball import BallController
 from collision import CollisionController
 #Нельзя так делать, только через контроллеры
 class Player(Unit):
-    def __init__(self,x,y,speed, acceleration,activity,types,type_name,game):
+    def __init__(self,x,y,speed, acceleration,types,game):
         Unit.__init__(self,x,y,speed)
         self.pos = pygame.math.Vector2(x,y)
         self.speed=pygame.math.Vector2(speed,speed)
         self.acceleration = acceleration
         self.pointer=1 
         self.rect = self.image.get_rect()
-        self.activity=activity
+   
         self.type = types
         self.health=100
         self.game=game
         self.setup=self.game.setup
         self.rotated=self.image
         self.rotated_computer=self.image
-        self.type_name=type_name
+       
 
     def update(self,time):
 

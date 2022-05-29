@@ -10,13 +10,13 @@ from quaffle import QuaffleController
 
 class Hunter(Player):
 
-    def __init__(self,x,y,speed,acceleration,activity,types,type_name,game):
-        Player.__init__(self,x,y,speed,acceleration,activity,types,type_name,game)
-        self.type = 'hunter'
+    def __init__(self,x,y,speed,acceleration,types,game):
+        Player.__init__(self,x,y,speed,acceleration,types,game)
+        self.type_name = 'hunter'
         #self.team = team
         self.image = pygame.Surface((10, 10))
         self.image=pygame.image.load('player.png')
-        self.activity=activity
+ 
         self.gameStop = False
         self.acceleration = acceleration
         self.power = 10
@@ -40,7 +40,7 @@ class Hunter(Player):
         #self.rotated=None
         self.rotated=self.image
         self.rotated_computer=self.image
-        self.type_name=type_name
+        #self.type_name=type_name
     
     def search(self,  ball, time, ring):
         min_dist = 25

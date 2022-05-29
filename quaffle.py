@@ -30,7 +30,7 @@ class QuaffleModel(BallModel):
 
 class QuaffleView(BallView):
     def __init__(self):
-        self._image=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/quaffle.png')
+        self._image=pygame.image.load('quaffle.png')
     def getImage(self):
         return self._image
 

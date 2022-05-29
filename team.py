@@ -1,5 +1,6 @@
 ﻿import pygame 
-from player import *
+from player import Player
+from player import Player_controller
 import random
 
 class Team:
@@ -7,6 +8,7 @@ class Team:
         #self.type = team_type
         self.player=[]
         self.group=group
+        self.group_passive=[]
 
     def add_players(self,player):
         self.player.append(player)
@@ -17,7 +19,7 @@ class Team:
     def add_passivity_player(self, player):
         self.passiv_player=player
 
-    def _findPlayer(self, position): 
+    def findPlayer(self, position): 
         for player in self: 
             if player.type == position:
                 return player
@@ -68,11 +70,12 @@ class Team_controller:
         if from_player.quaffle!=None:
             from_player.quaffle.passing(closest)
 
-
-    def update(self,time):
+    def update(self,time): #change_activity_player
         keystate = pygame.key.get_pressed()
         if keystate[pygame.K_q]:
+            print('***', self.team.activity_player.type_name)
             if self.team.activity_player.type_name=='hunter':
+          
                 self.team.activity_player=self.team.group[1]
    
             elif self.team.activity_player.type_name=='seeker':
@@ -87,4 +90,5 @@ class Team_controller:
 
         self.team.activity_player.update(time)
         self.team.passiv_player.computer_update(time)
+        
 

@@ -10,14 +10,14 @@ from collision import CollisionController
 from quaffle import QuaffleController
 
 class Seeker(Player):
-    def __init__(self,x,y,speed,acceleration,activity,types,type_name,game):
-        Player.__init__(self,x,y,speed,acceleration,activity,types,type_name,game)
-        self.type = 'seeker'
+    def __init__(self,x,y,speed,acceleration,types,game):
+        Player.__init__(self,x,y,speed,acceleration,types,game)
+        self.type_name = 'seeker'
         #self.team = team
         #self.control=player\computer
         self.image = pygame.Surface((10, 10))
-        self.image=pygame.image.load('seeker.jpg')
-        self.activity=activity
+        self.image=pygame.image.load('seeker.png')
+      
         self.gameStop = False
         self.acceleration = acceleration
         self.power = 0
@@ -33,7 +33,7 @@ class Seeker(Player):
         self.health=100
         self.rotated=self.image
         self.rotated_computer=self.image
-        self.type_name=type_name
+    
 
     def search(self,  ball, time, ring):
         min_dist = 25
@@ -64,7 +64,7 @@ class Seeker(Player):
 
 class Seeker_View:
     def __init__(self):
-        self.image=pygame.image.load('seeker.jpg')
+        self.image=pygame.image.load('seeker.png')
 
 class Seeker_controller(Player_controller):
     def __init__(self,player: Seeker, player_view: Seeker_View):
@@ -76,9 +76,6 @@ class Seeker_controller(Player_controller):
         surface.blit(self.player.rotated_computer, self.player.rect)
 
     def render(self,surface):
-        surface.blit(self.image,self.player.rect)
-
-    def render(self,surface):
         surface.blit(self.player.rotated,self.player.rect)
 
     def shoot(self):
@@ -88,5 +85,5 @@ class Seeker_controller(Player_controller):
             self.player.update(time)
     
     def computer_update(self,time):
+        
             self.player.computer_update(time)
-  
