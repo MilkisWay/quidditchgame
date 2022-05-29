@@ -10,8 +10,8 @@ from quaffle import QuaffleController
 
 class Hunter(Player):
 
-    def __init__(self,x,y,speed,acceleration,activity,types):
-        Player.__init__(self,x,y,speed,acceleration,activity,types)
+    def __init__(self,x,y,speed,acceleration,activity,types,type_name,game):
+        Player.__init__(self,x,y,speed,acceleration,activity,types,type_name,game)
         self.type = 'hunter'
         #self.team = team
         self.image = pygame.Surface((10, 10))
@@ -33,6 +33,14 @@ class Hunter(Player):
         self.dx2=4
         self.dy2=1
         self.count=0
+        self.game=game 
+        self.setup=self.game.setup
+        self.health=100
+        #self.radious_activite=5
+        #self.rotated=None
+        self.rotated=self.image
+        self.rotated_computer=self.image
+        self.type_name=type_name
     
     def search(self,  ball, time, ring):
         min_dist = 25
@@ -53,30 +61,38 @@ class Hunter(Player):
 
             self.rect.x=new_vector.x
             self.rect.y=new_vector.y
-        
-        if (self.pos.x==ball.pos.x or self.pos.y==ball.pos.y):
-            ball.holder=self
-            self.quaffle=ball
- 
-            ball.update(time,ring)
-            self.computer_update(time)
 
+    def frow_from_player(self, player_from):
+        pass
+
+    def catch_quaffle(self):
+       button_left, button_middle, button_rigth=pygame.mouse.get_pressed()
+       if button_left==True:
+           if self.possesion==True:
+               self.possesion=False
+
+           #self.possession=True
 class Hunter_View:
     def __init__(self):
         self.image=pygame.image.load('player.png')
+        
 
 class Hunter_controller(Player_controller):
-    def __init__(self,player: Hunter, player_view: Hunter_View):
+    def __init__(self,player: Hunter, player_view:Hunter_View):
         Player_controller.__init__(self)
         self.player=player
         self.image=player_view.image
 
+    def search(self, follower):
+        self.player.search(follower)
+
+    def render_computer(self,surface):
+        surface.blit(self.player.rotated_computer, self.player.rect)
+
     def render(self,surface):
-        surface.blit(self.image,self.player.rect)
+        surface.blit(self.player.rotated,self.player.rect)
 
     def update(self,time):
             self.player.update(time)
-            self.player.count+=1
-   
     def computer_update(self,time):
             self.player.computer_update(time)

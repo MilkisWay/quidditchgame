@@ -2,6 +2,7 @@ import pygame
 import os
 import sys
 from pygame.locals import *
+from setup import *
 
 class GameState(object):
     def __init__(self, game):
@@ -19,12 +20,14 @@ class BasicGame(object):
     def __init__(self, gameName,setup):
         pygame.init()
         pygame.display.set_caption(gameName);
-        self.screen_width=setup.screen_width
-        self.screen_height=setup.screen_height
+        self.setup=setup
+        self.screen_width=self.setup.screen_width
+        self.screen_height=self.setup.screen_height
         self.fpsClock = pygame.time.Clock()
-        self.mainwindow = pygame.display.set_mode((1920,1080),HWSURFACE|DOUBLEBUF|FULLSCREEN,32)
+        self.mainwindow = pygame.display.set_mode(( self.screen_width,self.screen_height),HWSURFACE|DOUBLEBUF|FULLSCREEN,32)
         self.background = pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/Background1.jpg')
         self.currentState = None
+        self.screen_rect = self.mainwindow.get_rect()
 
     def changeState(self,newState):
         if self.currentState!=None:

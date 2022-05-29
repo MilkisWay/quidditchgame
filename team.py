@@ -1,5 +1,6 @@
 ﻿import pygame 
 from player import *
+import random
 
 class Team:
     def __init__(self,group):
@@ -10,6 +11,11 @@ class Team:
     def add_players(self,player):
         self.player.append(player)
 
+    def add_activity(self,player):
+        self.activity_player=player
+
+    def add_passivity_player(self, player):
+        self.passiv_player=player
 
     def _findPlayer(self, position): 
         for player in self: 
@@ -19,7 +25,7 @@ class Team:
 
     def get_player(self, position):
         if position in ('hunter', 'seeker'):
-            return self._findPlayer(position)
+            return self.findPlayer(position)
 
     def get_group(self, group_name,player):
         Group = []
@@ -38,7 +44,7 @@ class Team:
                     return team
 
 class Team_controller:
-    def __init__(self,team:Team):
+    def __init__(self,team:Team,players_controller):
         self.team=team 
         self.players_controller=[]
         self.active_player=None
@@ -58,43 +64,27 @@ class Team_controller:
 
     def throw_closest(self,from_player): #from_player - игрок, у которого сейчас во владении quaffle
         pos=pygame.math.Vector2(10000,10000)
-        for player in self.team.group:
-            if player!=from_player:
-                if (from_player.pos.distance_to(player.pos) < from_player.pos.distance_to(pos)):
-                    closest=player
-                    pos=player.pos
-        print(closest)
+        self.get_closest(from_player)
         if from_player.quaffle!=None:
-            print('***')
             from_player.quaffle.passing(closest)
 
 
     def update(self,time):
-
-        if self.team.player[0].activity==1:
-            self.active_player=self.team.player[0]
-
-        if self.team.player[1].activity==1:
-            self.active_player=self.team.player[1]
-
-        if self.team.player[0].activity==0:
-            self.passive_player=self.team.player[0]
-
-        if self.team.player[1].activity==0:
-            self.passive_player=self.team.player[1]
-
-        
         keystate = pygame.key.get_pressed()
-        if keystate[pygame.K_w]:
+        if keystate[pygame.K_q]:
+            if self.team.activity_player.type_name=='hunter':
+                self.team.activity_player=self.team.group[1]
+   
+            elif self.team.activity_player.type_name=='seeker':
+                self.team.activity_player=self.team.group[0]
+ 
+            
+        if self.team.activity_player.type_name=='hunter':
+                self.team.passiv_player=self.team.group[1]
+            
+        elif self.team.activity_player.type_name=='seeker' :
+                self.team.passiv_player=self.team.group[0]
 
-            if self.team.player[0].activity==1 and self.team.player[1].activity==0 :
-                self.active_player=self.team.player[1]
-                self.passive_player=self.team.player[0]
-
-            if self.team.player[0].activity==0 and self.team.player[1].activity==1 :
-                self.active_player=self.team.player[0]
-                self.passive_player=self.team.player[1]
-
-        self.active_player.update(time)
-        self.passive_player.computer_update(time)
+        self.team.activity_player.update(time)
+        self.team.passiv_player.computer_update(time)
 

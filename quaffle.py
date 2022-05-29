@@ -22,11 +22,11 @@ class QuaffleModel(BallModel):
 
     def change_holder_type(self,line):
         self.quaffle_holder_type=line
-    #в контроллере вызывает при столкновении и меняет два параметра на другие
+
     def none_is_posessing(self):
         self.possession = False
         self.quaffle_holder_type=None
-    #если клавиша, то игрок выпустил мяч и владение стало None collision controller
+
 
 class QuaffleView(BallView):
     def __init__(self):
@@ -49,13 +49,12 @@ class QuaffleController(BallController):
         self.hunter2=hunter
 
     def update(self,dt):
-        print(self.ball.possession)
         if self.ball.possession==True:
             if self.hunter!=None:
                 self.ball.set_pos(self.hunter.pos)
         else:
              self.ball.set_Coord_y(self.ball.get_Coord_y()+10)
-             if self.ball.get_Coord_y() >=1080:
+             if self.ball.get_Coord_y()>=1080:
                 self.ball.set_Coord_y(0+100)
 
     def render(self,surface):

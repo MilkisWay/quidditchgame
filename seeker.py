@@ -10,8 +10,8 @@ from collision import CollisionController
 from quaffle import QuaffleController
 
 class Seeker(Player):
-    def __init__(self,x,y,speed,acceleration,activity,types):
-        Player.__init__(self,x,y,speed,acceleration,activity,types)
+    def __init__(self,x,y,speed,acceleration,activity,types,type_name,game):
+        Player.__init__(self,x,y,speed,acceleration,activity,types,type_name,game)
         self.type = 'seeker'
         #self.team = team
         #self.control=player\computer
@@ -28,7 +28,12 @@ class Seeker(Player):
         self.quaffle=None
         self.shoot_power=30
         self.type=types
-
+        self.game=game 
+        self.setup=self.game.setup
+        self.health=100
+        self.rotated=self.image
+        self.rotated_computer=self.image
+        self.type_name=type_name
 
     def search(self,  ball, time, ring):
         min_dist = 25
@@ -54,8 +59,7 @@ class Seeker(Player):
             ball.holder=self
             self.quaffle=ball
  
-            ball.update(time,ring)
-            self.computer_update(time)
+            ball.update(time)
 
 
 class Seeker_View:
@@ -68,14 +72,19 @@ class Seeker_controller(Player_controller):
         self.player=player
         self.image=player_view.image
 
+    def render_computer(self,surface):
+        surface.blit(self.player.rotated_computer, self.player.rect)
+
     def render(self,surface):
         surface.blit(self.image,self.player.rect)
+
+    def render(self,surface):
+        surface.blit(self.player.rotated,self.player.rect)
 
     def shoot(self):
        pass
 
     def update(self,time):
-            print('seeker key update')
             self.player.update(time)
     
     def computer_update(self,time):

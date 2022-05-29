@@ -12,12 +12,10 @@ class Ring(NonMovableObject):
         self.image = pygame.Surface((10, 10))
         self.image=pygame.image.load('ring.png')
         self.gameStop = False
-        self.pos = pygame.math.Vector2(x,y)
+        self.pos= pygame.math.Vector2(x,y)
         #self.rect = self.image.get_rect()
         self.rect.x=500
         self.rect.y=500
-        self.pos.x=self.rect.x
-        self.pos.y=self.rect.y
 
 
 class Ring_View(NonMovableObjectView):
