@@ -73,10 +73,10 @@ class Seeker_controller(Player_controller):
         self.image=player_view.image
 
     def render_computer(self,surface):
-        surface.blit(self.player.rotated_computer, self.player.rect)
+        surface.blit(self.player.rotated_computer,(self.player.pos.x,self.player.pos.y))
 
     def render(self,surface):
-        surface.blit(self.player.rotated,self.player.rect)
+        surface.blit(self.player.rotated,(self.player.pos.x,self.player.pos.y))
 
     def shoot(self):
        pass

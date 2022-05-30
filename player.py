@@ -61,8 +61,6 @@ class Player(Unit):
                     self.pos.x-=10
                 if self.pos.y>self.setup.screen_height:
                     self.pos.y-=10
-                #self.rect.clamp_ip(self.game.screen_rect)
-                print(self.pos)
 
                 return self.rotated
 
@@ -106,8 +104,7 @@ class Player(Unit):
 
         self.pos.y+=self.dy*self.speed.y*0.5
         self.pos.x+=self.dx*self.speed.x*0.5
-       
-        #self.rect.clamp_ip(self.game.screen_rect)
+
         return self.rotated_computer
             
     

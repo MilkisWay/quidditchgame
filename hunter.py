@@ -87,7 +87,7 @@ class Hunter_controller(Player_controller):
         self.player.search(follower)
 
     def render_computer(self,surface):
-        surface.blit(self.player.rotated_computer, self.player.rect)
+        surface.blit(self.player.rotated_computer,(self.player.pos.x,self.player.pos.y))
 
     def render(self,surface):
         surface.blit(self.player.rotated,(self.player.pos.x,self.player.pos.y))
