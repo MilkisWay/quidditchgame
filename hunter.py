@@ -1,6 +1,7 @@
 ﻿import pygame
 import os
 import sys
+import random
 from player import Player
 from player import Player_controller
 from pygame.locals import *
@@ -41,15 +42,16 @@ class Hunter(Player):
         self.rotated_computer=self.image
         #self.type_name=type_name
     
-    def search(self,  ball):
-        min_dist = 25
-        max_dist = 100
+    def search_ring(self, ring):
+        min_dist = 2000
+        max_dist = 500
         target_vector=pygame.math.Vector2(self.pos)
-        follower_vector=pygame.math.Vector2(ball)
-        new_vector=pygame.math.Vector2(ball)
+        follower_vector=pygame.math.Vector2(ring.pos)
+        new_vector=pygame.math.Vector2(ring.pos)
 
         distance = follower_vector.distance_to(target_vector)
-        if distance > min_dist:
+        if distance > min_dist :
+
             direction_vector= (target_vector - follower_vector) / distance 
             min_step = max(0, distance - max_dist)
             max_step = distance - min_dist
@@ -60,6 +62,67 @@ class Hunter(Player):
 
             self.rect.x=new_vector.x
             self.rect.y=new_vector.y
+
+
+    def search(self,ball,ring):
+        min_dist = 5
+        max_dist = 100
+        target_vector=pygame.math.Vector2(self.pos)
+        follower_vector=pygame.math.Vector2(ball.pos)
+        new_vector=pygame.math.Vector2(ball.pos)
+
+        distance = follower_vector.distance_to(target_vector)
+        if distance > min_dist and ball.possession==False:
+            direction_vector= (target_vector - follower_vector) / distance 
+            min_step = max(0, distance - max_dist)
+            max_step = distance - min_dist
+            step_distance= min_step + (max_step - min_step) 
+            new_vector= (follower_vector + step_distance*direction_vector)
+            self.pos.x=new_vector.x
+            self.pos.y=new_vector.y
+
+            self.rect.x=new_vector.x
+            self.rect.y=new_vector.y
+
+        elif ball.possession==True:
+            self.computer_update_5(100)
+
+    def computer_update_5(self,time):
+        w=self.setup.screen_width
+        h=self.setup.screen_height
+        t=0
+
+        for i in range(0,200):
+            x=random.randint(0,w)
+            y=random.randint(0,h)
+            position=(x,y)
+            self.points.append(position)
+  
+        dir = pygame.math.Vector2(self.points[self.i]) - (self.pos.x, self.pos.y)
+        if dir.length() < self.flag_move :
+           
+            self.pos.x, self.pos.y = self.points[self.i]
+            self.i = (self.i + 1) % len(self.points)
+
+        else:
+            dir.scale_to_length(self.flag_move)
+            new_pos = pygame.math.Vector2(self.pos.x, self.pos.y) + dir*2
+            flag=0
+            if new_pos.x-self.pos.x>0:
+                if flag==0 or flag==-1:
+                    self.rotated=pygame.transform.flip(self.image,True,False)
+                    flag=1
+                elif flag==1:
+                    self.rotated=pygame.transform.flip(self.image,False,False)
+                    flag=1
+            elif new_pos.x-self.pos.x<0:
+                if flag==0:
+                    self.rotated=pygame.transform.flip(self.image,False,False)
+                    flag=-1
+                elif flag==1:
+                    self.rotated=pygame.transform.flip(self.image,True,False)
+                    flag=-1
+            self.pos.x, self.pos.y = (new_pos.x, new_pos.y)
 
     def frow_from_player(self, player_from):
         pass
@@ -83,7 +146,7 @@ class Hunter_controller(Player_controller):
         self.image=player_view.image
 
     def search(self, follower):
-        self.player.search(follower)
+        self.player.search(follower,ring)
 
     def render_computer(self,surface):
         surface.blit(self.player.rotated_computer,(self.player.pos.x,self.player.pos.y))

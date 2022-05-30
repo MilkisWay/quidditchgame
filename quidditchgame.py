@@ -50,8 +50,8 @@ class PlayGameState(GameState):
         hunter_computer_2=Hunter(200,100,1,1,2,self.game,"Team2_hunter.png")
         hunter_computer_3=Hunter(200,100,1,1,2,self.game,"Team2_hunter.png")
         hunter=Hunter(500,100,1,1,1,self.game,"Team1_hunter.png")
-        seeker_2=Seeker(200,200,1,1,2,self.game)
-        seeker=Seeker(600,200,1,1,1,self.game)
+        seeker_2=Seeker(200,200,1,1,1,self.game,"Team1_Seeker.png")
+        seeker=Seeker(600,200,1,1,2,self.game,"Team2_Seeker.png")
 
         snitch_render = SnitchView()
         quaffle_render = QuaffleView()
@@ -61,8 +61,8 @@ class PlayGameState(GameState):
         hunter_computer_render_2=Hunter_View("Team2_hunter.png")
         hunter_computer_render_3=Hunter_View("Team2_hunter.png")
         hunter_render=Hunter_View("Team1_hunter.png")
-        seeker_2_render=Seeker_View()
-        seeker_render=Seeker_View()
+        seeker_2_render=Seeker_View("Team1_Seeker.png")
+        seeker_render=Seeker_View("Team2_Seeker.png")
         score1=0
         score2=0
 
@@ -111,9 +111,9 @@ class PlayGameState(GameState):
 
         #self.computer_controller=[self.hunter_computer_controller, self.seeker_controller, self.hunter_computer_controller_2, self.hunter_computer_controller_3]
 
-        self.renders=[self.snitch_controller,self.quaffle_controller,self.seeker_controller_2,self.hunter_controller,self.ring_controller2,self.seeker_controller, self.ring_controller]
+        self.renders=[self.snitch_controller,self.quaffle_controller,self.seeker_controller_2,self.hunter_controller,self.ring_controller2, self.ring_controller]
 
-        self.renders_computer=[self.hunter_computer_controller, self.hunter_computer_controller_2, self.hunter_computer_controller_3,self.seeker_controller_2, self.seeker_controller]
+        self.renders_computer=[self.hunter_computer_controller, self.hunter_computer_controller_2, self.hunter_computer_controller_3,self.seeker_controller]
     #def seeker_funstion(seeker,circle,gameTime,ring):#not here
         #if self.seeker_2.quaffle==None:
             #self.seeker_2.search(circle,gameTime,ring)
@@ -122,9 +122,10 @@ class PlayGameState(GameState):
         
         for i in self.controllers:
             i.update(gameTime)
-            self.seeker_controller.player.search(self.snitch_controller.ball.pos,gameTime)
+            self.seeker_controller.player.search(self.snitch_controller.ball, self.ring_controller.ring)
+            self.hunter_computer_controller_2.player.search(self.quaffle_controller.ball,self.ring_controller.ring)
             self.hunter_computer_controller_3.player.computer_update_3(gameTime)
-            self.hunter_computer_controller_2.search(self.quaffle_controller.ball.pos)
+            #self.hunter_computer_controller_2.player.computer_update_3(gameTime)
             self.hunter_computer_controller.player.computer_update_3(gameTime)
    
         

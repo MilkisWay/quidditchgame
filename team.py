@@ -73,22 +73,21 @@ class Team_controller:
     def update(self,time): #change_activity_player
         keystate = pygame.key.get_pressed()
         if keystate[pygame.K_q]:
-            print('***', self.team.activity_player.type_name)
-            if self.team.activity_player.type_name=='hunter':
-          
+            if self.team.activity_player.type_name=='hunter':     
                 self.team.activity_player=self.team.group[1]
-   
             elif self.team.activity_player.type_name=='seeker':
                 self.team.activity_player=self.team.group[0]
- 
-            
         if self.team.activity_player.type_name=='hunter':
-                self.team.passiv_player=self.team.group[1]
-            
+                self.team.passiv_player=self.team.group[1]  
         elif self.team.activity_player.type_name=='seeker' :
                 self.team.passiv_player=self.team.group[0]
-
-        self.team.activity_player.update(time)
-        self.team.passiv_player.computer_update_3(time)
+        if self.team.activity_player.type_name=='hunter':
+            self.team.activity_player.update(time)
+        else:
+            self.team.activity_player.update(time)
+        if self.team.passiv_player.type_name=='hunter':
+            self.team.passiv_player.computer_update_5(time)
+        else:
+            self.team.passiv_player.computer_update_3(time)
         
 

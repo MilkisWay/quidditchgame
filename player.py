@@ -30,7 +30,7 @@ class Player(Unit):
 
 
     def search(self, pos,time):
-        min_dist = 25
+        min_dist = 100
         max_dist = 100
         target_vector=pygame.math.Vector2(self.pos)
         follower_vector=pygame.math.Vector2(pos)
@@ -85,11 +85,13 @@ class Player(Unit):
                 #self.rect.y+=self.speed.y
 
                 if self.pos.x>self.setup.screen_width:
-                    self.pos.x-=10
+                    self.pos.x=10
                 if self.pos.y>self.setup.screen_height:
-                    self.pos.y-=10
-
-                return self.rotated
+                    self.pos.y=10
+                if self.pos.x<0:
+                    self.pos.x=10
+                if self.pos.y<0:
+                    self.pos.y=10
 
 
     def computer_update(self,time):
@@ -146,29 +148,28 @@ class Player(Unit):
             self.points.append(position)
   
         dir = pygame.math.Vector2(self.points[self.i]) - (self.pos.x, self.pos.y)
-        if dir.x<0:
-               if t==0:
-                  self.rotated=pygame.transform.flip(self.image,False,False)
-                  t=-1
-               elif t==1:
-                   self.rotated=pygame.transform.flip(self.image,True,False)
-                   t=-1
-        elif dir.x>0:
-              if t==0 or t==-1:
-                        self.rotated=pygame.transform.flip(self.image,True,False)
-                        t=1
-              elif t==1:
-                        self.rotated=pygame.transform.flip(self.image,False,False)
-                        t=1
         if dir.length() < self.flag_move :
             self.pos.x, self.pos.y = self.points[self.i]
             self.i = (self.i + 1) % len(self.points)
         else:
             dir.scale_to_length(self.flag_move)
             new_pos = pygame.math.Vector2(self.pos.x, self.pos.y) + dir*2
-            self.pos.x, self.pos.y = (new_pos.x, new_pos.y) 
-
-        return self.rotated
+            flag=0
+            if new_pos.x-self.pos.x>0:
+                if flag==0 or flag==-1:
+                    self.rotated_computer=pygame.transform.flip(self.image,True,False)
+                    flag=1
+                elif flag==1:
+                    self.rotated_computer=pygame.transform.flip(self.image,False,False)
+                    flag=1
+            elif new_pos.x-self.pos.x<0:
+                if flag==0:
+                    self.rotated_computer=pygame.transform.flip(self.image,False,False)
+                    flag=-1
+                elif flag==1:
+                    self.rotated_computer=pygame.transform.flip(self.image,True,False)
+                    flag=-1
+            self.pos.x, self.pos.y = (new_pos.x, new_pos.y)
 
     def computer_update_2(self, time):
         n=100
@@ -220,7 +221,7 @@ class Player_controller:
 
         
     def check_collision(player):
-        collision_controller.collision_Detection(player)
+        pass
 
 class Player_View(pygame.sprite.Sprite):
     def __init__(self, image):
