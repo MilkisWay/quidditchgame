@@ -26,6 +26,8 @@
     <Compile Include="basicgame.py" />
     <Compile Include="bludger.py" />
     <Compile Include="collision.py" />
+    <Compile Include="gameover.py" />
+    <Compile Include="gamewin.py" />
     <Compile Include="hunter.py" />
     <Compile Include="interstitial.py" />
     <Compile Include="main.py" />
@@ -52,6 +54,7 @@
     <InterpreterReference Include="Global|PythonCore|3.10" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="gameover.jpg" />
     <Content Include="Photos\Background1.jpg" />
     <Content Include="Photos\Griff_block.png" />
     <Content Include="Music\Harry Potter.ogg" />
@@ -65,8 +68,11 @@
     <Content Include="Photos\snitch.png" />
     <Content Include="Photos\snitch_redone.png" />
     <Content Include="player.png" />
+    <Content Include="quaffle.png" />
     <Content Include="ring.png" />
     <Content Include="seeker.jpg" />
+    <Content Include="snitch.png" />
+    <Content Include="Team1_Seeker.png" />
     <Content Include="Text files\score.txt" />
     <Content Include="Photos\Slyth_block.png" />
     <Content Include="Text files\surfmapp.txt" />

@@ -56,6 +56,7 @@ class MainMenuState(GameState):
                 self.game.changeState(None)#add state to read reacords
             elif self.index == 0:
                 self.game.changeState(self.playGameState)#Start the Game
+    
     def render(self,surface): #here senarios, when people click
         surface.blit(self.image,(0,0))
         surface.blit(self.image1,(500,100))

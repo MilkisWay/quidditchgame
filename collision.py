@@ -6,7 +6,7 @@ from interstitial import *
 
 class CollisionController(object):
     def __init__(self):
-        self._hunters=[]
+        self.hunters=[]
         self.quaffle=None
         self.score=None
         self.basic=None
@@ -21,7 +21,7 @@ class CollisionController(object):
         self.basic=object1
 
     def add_hunter(self,object1):
-        self._hunters.append(object1)
+        self.hunters.append(object1)
 
     def add_seeker(self,object1):
         self._seekers.append(object1)
@@ -62,7 +62,7 @@ class CollisionController(object):
                 object1.pos.y=object1.pos.y+10
 
     def check_if_on_screen(self):
-        for i in self._hunters:
+        for i in self.hunters:
             self.check_for_players(i.player)
         for i in self._seekers:
             self.check_for_players(i.player)
@@ -70,7 +70,6 @@ class CollisionController(object):
         self.check(self.snitch.ball)
 
     def check_quaffle(self):
-        print(len(self._hunters))
 
         if self.quaffle.ball.possession==True:
             if self.quaffle.ball.quaffle_holder_type == 1:
@@ -79,77 +78,112 @@ class CollisionController(object):
                     if self.distance_to_ring(1)==True:
                         self.quaffle.ball.set_pos(self.rings[1].ring.pos)
                         self.scores[0]+=10
-                        self.quaffle.ball.none_is_posessing()
+                        self.quaffle.ball.none_is_possessing()
+                        self.quaffle.ball.pos.x=500
+                        self.quaffle.ball.pos.y=500
+                        self.quaffle.update2()
 
                     else:
-                        for i in self._hunters:
+                        for i in self.hunters:
                             if i.player.type == 1:
                                 if i.player!=self.quaffle.hunter:
-                                    if (((self.quaffle.hunter.pos.x - i.player.pos.x) ** 2) + ((self.quaffle.hunter.pos.y - i.player.pos.y) ** 2)) ** (0.5) < self.min_distance_to_quaffle:
-                                        self.min_distance_to_quaffle = (((self.quaffle.hunter.pos.x - i.player.pos.x) ** 2) + ((self.quaffle.hunter.pos.y - i.player.pos.y) ** 2)) ** (0.5) 
+                                    if self.distance_to_object(i) < self.min_distance_to_quaffle:
+                                        self.min_distance_to_quaffle = self.distance_to_object(i)
                                         self.closest_hunter_to_quaffle=i.player
-                        self.quaffle.is_caught_by_hunter(self.closest_hunter_to_quaffle)
-                        self.min_distance_to_quaffle=100000000
-                        self.closest_hunter_to_quaffle=None
+
+                        if self.closest_hunter_to_quaffle!=None:
+                            self.quaffle.is_caught_by_hunter(self.closest_hunter_to_quaffle)
+                            self.min_distance_to_quaffle=100000000
+                            self.closest_hunter_to_quaffle=None
+                            self.quaffle.ball.update()
+
+                        elif self.closest_hunter_to_quaffle==None:
+                            self.quaffle.ball.none_is_possessing()
+                            self.quaffle.update2()
                 else:
-                    for i in self._hunters:
+                    for i in self.hunters:
                         if i.player.type == 1:
                             if i.player!=self.quaffle.hunter:
-                                if (((self.quaffle.hunter.pos.x - i.player.pos.x) ** 2) + ((self.quaffle.hunter.pos.y - i.player.pos.y) ** 2)) ** (0.5) < self.min_distance_to_quaffle:
-                                    self.min_distance_to_quaffle = (((self.quaffle.hunter.pos.x - i.player.pos.x) ** 2) + ((self.quaffle.hunter.pos.y - i.player.pos.y) ** 2)) ** (0.5) 
+                                if self.distance_to_object(i) < self.min_distance_to_quaffle:
+                                    self.min_distance_to_quaffle = self.distance_to_object(i)
                                     self.closest_hunter_to_quaffle=i.player
-                    self.quaffle.radius_of_hunters(self.closest_hunter_to_quaffle)
-                    self.min_distance_to_quaffle=100000000
-                    self.closest_hunter_to_quaffle=None
 
+                    if self.closest_hunter_to_quaffle!=None:
+                        self.quaffle.radius_of_hunters(self.closest_hunter_to_quaffle)
+                        self.min_distance_to_quaffle=100000000
+                        self.closest_hunter_to_quaffle=None
+                        self.quaffle,ball.update()
+                    else:
+                        self.quaffle.ball.none_is_possessing()
+                        self.quaffle.update2()
 
             if self.quaffle.ball.quaffle_holder_type == 2:
                 if self.distance_to_ring(0)==True:
                         self.quaffle.ball.set_pos(self.rings[0].ring.pos)
                         self.scores[1]+=10
                         self.quaffle.ball.none_is_posessing()
+                        self.quaffle.ball.pos.x=500
+                        self.quaffle.ball.pos.y=500
+                        self.quaffle.update2()
                 else:
-                    if self.quaffle.hunter.count==10:
-                        for i in self._hunters:
+                    if self.quaffle.hunter.count%10==0:
+                        for i in self.hunters:
                             if i.player.type == 2:
                                 if i.player!=self.quaffle.hunter:
-                                    if (((self.quaffle.hunter.pos.x - i.player.pos.x) ** 2) + ((self.quaffle.hunter.pos.y - i.player.pos.y) ** 2)) ** (0.5) < self.min_distance_to_quaffle:
-                                        self.min_distance_to_quaffle = (((self.quaffle.hunter.pos.x - i.player.pos.x) ** 2) + ((self.quaffle.hunter.pos.y - i.player.pos.y) ** 2)) ** (0.5)
+                                    if self.distance_to_object(i) < self.min_distance_to_quaffle:
+                                        self.min_distance_to_quaffle = self.distance_to_object(i)
                                         self.closest_hunter_to_quaffle=i.player
-                        self.quaffle.is_caught_by_hunter(self.closest_hunter_to_quaffle)
-                        self.min_distance_to_quaffle=100000000
-                        self.closest_hunter_to_quaffle=None
+
+                        if self.closest_hunter_to_quaffle!=None:
+                            self.quaffle.is_caught_by_hunter(self.closest_hunter_to_quaffle)
+                            self.min_distance_to_quaffle=100000000
+                            self.closest_hunter_to_quaffle=None
+                            self.quaffle.update()
+                        else:
+                            self.quaffle.ball.none_is_possessing()
+                            self.quaffle.update2()
                     else:
-                        for i in self._hunters:
+                        for i in self.hunters:
                             if i.player.type == 2:
                                 if i.player!=self.quaffle.hunter:
-                                    if (((self.quaffle.hunter.pos.x - i.player.pos.x) ** 2) + ((self.quaffle.hunter.pos.y - i.player.pos.y) ** 2)) ** (0.5) < self.min_distance_to_quaffle:
-                                        self.min_distance_to_quaffle = (((self.quaffle.hunter.pos.x - i.player.pos.x) ** 2) + ((self.quaffle.hunter.pos.y - i.player.pos.y) ** 2)) ** (0.5)
+                                    if self.distance_to_object(i) < self.min_distance_to_quaffle:
+                                        self.min_distance_to_quaffle = self.distance_to_object(i)
                                         self.closest_hunter_to_quaffle=i.player
                         self.quaffle.radius_of_hunters(self.closest_hunter_to_quaffle)
                         self.min_distance_to_quaffle=100000000
                         self.closest_hunter_to_quaffle=None
         
         if self.quaffle.ball.possession==False:
-            for j in range(0,len(self._hunters)):
-                i=self._hunters[j]
-                if (((self.quaffle.ball.get_Coord_x() - i.player.pos.x) ** 2) + ((self.quaffle.ball.get_Coord_y() - i.player.pos.y) ** 2)) ** (0.5) <= (self.quaffle.ball.radius):
-                    if (((self.quaffle.ball.get_Coord_x() - i.player.pos.x) ** 2) + ((self.quaffle.ball.get_Coord_y() - i.player.pos.y) ** 2)) ** (0.5) < self.min_distance_to_quaffle:
-                        self.min_distance_to_quaffle =(((self.quaffle.ball.get_Coord_x() - i.player.pos.x) ** 2) + ((self.quaffle.ball.get_Coord_y() - i.player.pos.y) ** 2)) ** (0.5)
-                        self.closest_hunter_to_quaffle=i.player
-            if self.closest_hunter_to_quffle!=None:
+            for i in self.hunters:
+                self.compare_with_object(i)
+            if self.closest_hunter_to_quaffle!=None:
                 self.quaffle.is_caught_by_hunter(self.closest_hunter_to_quaffle)
                 self.min_distance_to_quaffle=100000000
                 self.closest_hunter_to_quaffle=None
+                self.quaffle.update()
+            elif self.closest_hunter_to_quaffle==None:
+                self.quaffle.update2()
+
+    def compare_with_object(self,i):
+        if  self.distance_to_object(i)<=(self.quaffle.ball.radius):
+            if self.distance_to_object(i) < self.min_distance_to_quaffle:
+                self.min_distance_to_quaffle = self.distance_to_object(i)
+                self.closest_hunter_to_quaffle=i.player
+
+
+    def distance_to_object(self,i):
+        return (((self.quaffle.ball.pos.x - i.player.pos.x) ** 2) + ((self.quaffle.ball.pos.y- i.player.pos.y) ** 2)) ** (0.5)
                                
     def check_snitch(self):
         for i in self._seekers:
-            if ((self.snitch.ball.get_Coord_x()-i.player.pos.x)**2+(self.snitch.ball.get_Coord_y()-i.player.pos.y)**2)**(0.5)<=(self.snitch.ball.radius):
+            if ((self.snitch.ball.pos.x-i.player.pos.x)**2+(self.snitch.ball.pos.y-i.player.pos.y)**2)**(0.5)<=self.snitch.ball.radius:
                 k=(i.player.type)-1
-                self.scores[k]+=150
-                self.snitch.ball.endGame(i.player.type)
-                break
-
+                if self.snitch.ball.count==0:
+                    self.scores[k]+=150
+                    self.snitch.ball.possession=True
+                    self.snitch.ball.gameStop=True
+                    self.who_possess = i.player.type
+                    self.snitch.ball,count=1
     #def check_score(self):
         #if self.quaffle.ball.possession==False:
             #for i in self.rings:
@@ -158,36 +192,42 @@ class CollisionController(object):
                         #k=(self.quaffle.ball.quaffle_holder_type)-1
                         #self.score[k].change_score(10)
 
-    def check_players(self):
-        for i in range(0,len(self._hunters)-1):
-            for j in range(i+1,len(self._hunters)):
-                if ((self._hunters[i].player.pos.x-self._hunters[j].player.pos.x)**2+(self._hunters[i].player.pos.y-self._hunters[j].player.pos.y)**2)**(0.5)<=(self._hunters[i].player.main_radius):
-                    self._hunters[i].player.health-=1
-                    self._hunters[j].player.health-=1
-                elif ((self._hunters[i].player.pos.x-(self._hunters[j].player.pos.x+self._hunters[j].player.dx1))**2+(self._hunters[i].player.pos.y-(self._hunters[j].player.pos.y+self._hunters[j].player.dy1))**2)**(0.5)<=(self._hunters[i].player.head_radius):
-                    self._hunters[i].player.health-=1
-                    self._hunters[j].player.health-=1
-                elif (self._hunters[j].player.get_Coord_x()-(self._hunters[i].player.get_Coord_x()+self._hunters[i].player.dx2))**2+(self._hunters[j].player.get_Coord_y()-(self._hunters[i].player.get_Coord_y()+self._hunters[i].player.dy2))**2<=(self._hunters[i].player.hand_radius)**2:
-                    self._hunters[i].player.health-=1
-                    self._hunters[j].player.health-=1
-            for m in self._seekers:
-                if (m.player.get_Coord_x()-self._hunters[i].player.get_Coord_x())**2+(m.player.get_Coord_y()-self._hunters[i].player.get_Coord_y())**2<=(self._hunters[i].player.main_radius)**2:
-                    self._hunters[i].player.health-=1
-                    self._hunters[j].player.health-=1
-                elif (m.player.get_Coord_x()-(self._hunters[i].player.get_Coord_x()+self._hunters[i].player.dx1))**2+(m.player.get_Coord_y()-(self._hunters[i].player.get_Coord_y()+self._hunters[i].player.dy1))**2<=(self._hunters[i].player.head_radius)**2:
-                    self._hunters[i].player.health-=1
-                    self._hunters[j].player.health-=1
-                elif (m.player.get_Coord_x()-(self._hunters[i].player.get_Coord_x()+self._hunters[i].player.dx2))**2+(m.player.get_Coord_y()-(self._hunters[i].player.get_Coord_y()+self._hunters[i].player.dy2))**2<=(self._hunters[i].player.hand_radius)**2:
-                    self._hunters[i].player.health-=1
-                    self._hunters[j].player.health-=1
+    #def check_players(self):
+       # for i in range(0,len(self.hunters)-1):
+            #for j in range(i+1,len(self._hunters)):
+               # if ((self._hunters[i].player.pos.x-self._hunters[j].player.pos.x)**2+(self._hunters[i].player.pos.y-self._hunters[j].player.pos.y)**2)**(0.5)<=(self._hunters[i].player.main_radius):
+                   # self._hunters[i].player.health-=1
+                   # self._hunters[j].player.health-=1
+                #elif ((self._hunters[i].player.pos.x-(self._hunters[j].player.pos.x+self._hunters[j].player.dx1))**2+(self._hunters[i].player.pos.y-(self._hunters[j].player.pos.y+self._hunters[j].player.dy1))**2)**(0.5)<=(self._hunters[i].player.head_radius):
+                  #  self._hunters[i].player.health-=1
+                   # self._hunters[j].player.health-=1
+                #elif (self._hunters[j].player.get_Coord_x()-(self._hunters[i].player.get_Coord_x()+self._hunters[i].player.dx2))**2+(self._hunters[j].player.get_Coord_y()-(self._hunters[i].player.get_Coord_y()+self._hunters[i].player.dy2))**2<=(self._hunters[i].player.hand_radius)**2:
+                   # self._hunters[i].player.health-=1
+                   # self._hunters[j].player.health-=1
+           # for m in self._seekers:
+               # if (m.player.get_Coord_x()-self._hunters[i].player.get_Coord_x())**2+(m.player.get_Coord_y()-self._hunters[i].player.get_Coord_y())**2<=(self._hunters[i].player.main_radius)**2:
+                   # self._hunters[i].player.health-=1
+                   # self._hunters[j].player.health-=1
+               # elif (m.player.get_Coord_x()-(self._hunters[i].player.get_Coord_x()+self._hunters[i].player.dx1))**2+(m.player.get_Coord_y()-(self._hunters[i].player.get_Coord_y()+self._hunters[i].player.dy1))**2<=(self._hunters[i].player.head_radius)**2:
+                  #  self._hunters[i].player.health-=1
+                   # self._hunters[j].player.health-=1
+               # elif (m.player.get_Coord_x()-(self._hunters[i].player.get_Coord_x()+self._hunters[i].player.dx2))**2+(m.player.get_Coord_y()-(self._hunters[i].player.get_Coord_y()+self._hunters[i].player.dy2))**2<=(self._hunters[i].player.hand_radius)**2:
+                   # self._hunters[i].player.health-=1
+                   # self._hunters[j].player.health-=1
 
     def update(self,ct):
         self.check_if_on_screen()
         self.check_quaffle()
         self.check_snitch()
         #self.check_score()
-        self.check_players()
+        #self.check_players()
 
     def distance_to_ring(self,i):
-        if (((self.quaffle.ball.get_Coord_x() - self.rings[i].ring.rect.center.x) ** 2) + ((self.quaffle.ball.get_Coord_y() - self.rings[i].ring.rect.center.y) ** 2)) ** (0.5) <= 100:
+        if (((self.quaffle.ball.pos.x - self.rings[i].ring.pos.x) ** 2) + ((self.quaffle.ball.pos.y - self.rings[i].ring.pos.y) ** 2)) ** (0.5) <= 500:
             return True
+
+    def render(self,surface):
+        f1=pygame.font.Font(None,72)
+        surface.blit(f1.render(str(self.scores[0]),True,(255, 223, 100)),(1800,50))
+        surface.blit(f1.render(":",True,(255, 223, 79)),(1750,50))
+        surface.blit(f1.render(str(self.scores[1]),True,(255, 223, 100)),(1650,50))

@@ -14,7 +14,7 @@ from team import *
 from collision import *
 
 class PlayGameState(GameState):
-    def __init__(self,game,gameOverState,gameWinState):
+    def __init__(self,game):
         super(PlayGameState,self).__init__(game)
         self.game=game
         self.controllers = None
@@ -28,26 +28,35 @@ class PlayGameState(GameState):
         self.seeker_controller=None
         self.collision_controller=None
         self.team_1_controller=None
-        self.gameOverState = gameOverState
         self.setup=game.setup
-        self.gameWinState = gameWinState #dnk  somwhere have to save results to a file
+        self.gameWinState = None
+        self.gameOverState = None
         #and state for records and settings for speed and random
         self.initialise()
 
+    
+    def setgameWin(self,state):
+        self.gameWinState = state
+
+    def setgameOverState(self,state):
+        self.gameOverState = state
+    
     def initialise(self):
-        ring = Ring(100,700)
+        ring = Ring(10,700)
+        ring2 = Ring(1380,700)
         quaffle = QuaffleModel(500,100,1)
         snitch = SnitchModel(random.randint(10,1000),random.randint(10,1900))
-        hunter_computer=Hunter(100,100,1,1,'computer',self.game)
-        hunter_computer_2=Hunter(200,100,1,1,'computer',self.game)
-        hunter_computer_3=Hunter(200,100,1,1,'computer',self.game)
-        hunter=Hunter(100,100,1,1,'player',self.game)
-        seeker_2=Seeker(200,200,1,1,'computer',self.game)
-        seeker=Seeker(600,200,1,1,'player',self.game)
+        hunter_computer=Hunter(100,100,1,1,2,self.game)
+        hunter_computer_2=Hunter(200,100,1,1,2,self.game)
+        hunter_computer_3=Hunter(200,100,1,1,2,self.game)
+        hunter=Hunter(500,100,1,1,1,self.game)
+        seeker_2=Seeker(200,200,1,1,2,self.game)
+        seeker=Seeker(600,200,1,1,1,self.game)
 
         snitch_render = SnitchView()
         quaffle_render = QuaffleView()
         ring_render=Ring_View()
+        ring_render2=Ring_View()
         hunter_computer_render=Hunter_View()
         hunter_computer_render_2=Hunter_View()
         hunter_computer_render_3=Hunter_View()
@@ -60,6 +69,7 @@ class PlayGameState(GameState):
         self.snitch_controller = SnitchController(snitch,snitch_render)
         self.quaffle_controller = QuaffleController(quaffle,quaffle_render)
         self.ring_controller=Ring_controller(ring,ring_render)
+        self.ring_controller2=Ring_controller(ring2,ring_render2)
         self.hunter_computer_controller=Hunter_controller(hunter_computer,hunter_computer_render)
         self.hunter_computer_controller_2=Hunter_controller(hunter_computer_2,hunter_computer_render_2)
         self.hunter_computer_controller_3=Hunter_controller(hunter_computer_3,hunter_computer_render_3)
@@ -69,8 +79,8 @@ class PlayGameState(GameState):
         
         self.collision_controller=CollisionController()
 
-        controlers_1=[self.hunter_controller,self.seeker_controller_2]
-        group=[hunter,seeker_2]
+        controlers_1=[self.hunter_controller,self.seeker_controller_2,self.hunter_computer_controller]
+        group=[hunter,seeker_2,hunter_computer]
         team_1=Team(group)
         self.team_1_controller=Team_controller(team_1, controlers_1)
         team_1.add_activity(hunter)
@@ -94,13 +104,14 @@ class PlayGameState(GameState):
         self.collision_controller.add_quaffle(self.quaffle_controller)
         self.collision_controller.add_snitch(self.snitch_controller)
         self.collision_controller.add_ring(self.ring_controller)
+        self.collision_controller.add_ring(self.ring_controller2)
         self.collision_controller.add_basic_setup(self.game)
 
-        self.controllers=[self.snitch_controller,self.quaffle_controller,self.team_1_controller]
+        self.controllers=[self.snitch_controller,self.team_1_controller]
 
         self.computer_controller=[self.hunter_computer_controller, self.seeker_controller, self.hunter_computer_controller_2, self.hunter_computer_controller_3]
 
-        self.renders=[self.snitch_controller,self.quaffle_controller,self.seeker_controller_2,self.hunter_controller,self.seeker_controller, self.ring_controller]
+        self.renders=[self.snitch_controller,self.quaffle_controller,self.seeker_controller_2,self.hunter_controller,self.ring_controller2,self.seeker_controller, self.ring_controller]
 
         self.renders_computer=[self.hunter_computer_controller, self.hunter_computer_controller_2, self.hunter_computer_controller_3,self.seeker_controller_2, self.seeker_controller]
     #def seeker_funstion(seeker,circle,gameTime,ring):#not here
@@ -117,14 +128,20 @@ class PlayGameState(GameState):
 
         self.collision_controller.update(gameTime)
 
-        #if self.snitch_controller._ball.endGame()==True:
-            #if self.snitch_controller._ball.get_who_posses == self.snitch_controller._ball.player_seeker:
-                #self.game.changeState(self.gameWinState)
-            #elif self.snitch_controller._ball.get_who_posses == self.snitch_controller._ball.computer_seeker:
-                #self.game.changeState(self.gameOverState)
+        if self.snitch_controller.ball.possession==True:
+            screen = pygame.display.set_mode((1920,1080))
+            screen_b=pygame.image.load('C:/Users/milan/Documents/Uni/Python/Game/GameUni/Photos/Background1.jpg')
+            screen.blit(screen_b,(0,0))
+            f1 = pygame.font.Font(None, 72)
+            if self.snitch_controller.ball.who_possess == 1:
+                self.game.changeState(self.gameWinState)
+            elif self.snitch_controller.ball.who_possess == 2:
+                self.game.changeState(self.gameOverState)
     
     def render(self,surface):
+        self.collision_controller.render(surface)
         for i in self.renders:
             i.render(surface)
         for i in self.renders_computer:
             i.render_computer(surface)
+         

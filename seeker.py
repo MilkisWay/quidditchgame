@@ -16,7 +16,7 @@ class Seeker(Player):
         #self.team = team
         #self.control=player\computer
         self.image = pygame.Surface((10, 10))
-        self.image=pygame.image.load('seeker.png')
+        self.image=pygame.image.load('player.png')
       
         self.gameStop = False
         self.acceleration = acceleration
@@ -64,7 +64,7 @@ class Seeker(Player):
 
 class Seeker_View:
     def __init__(self):
-        self.image=pygame.image.load('seeker.png')
+        self.image=pygame.image.load('player.png')
 
 class Seeker_controller(Player_controller):
     def __init__(self,player: Seeker, player_view: Seeker_View):
@@ -82,6 +82,7 @@ class Seeker_controller(Player_controller):
        pass
 
     def update(self,time):
+
             self.player.update(time)
     
     def computer_update(self,time):

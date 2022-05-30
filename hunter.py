@@ -15,7 +15,7 @@ class Hunter(Player):
         self.type_name = 'hunter'
         #self.team = team
         self.image = pygame.Surface((10, 10))
-        self.image=pygame.image.load('player.png')
+        self.image=pygame.image.load('Team1_Seeker.png')
  
         self.gameStop = False
         self.acceleration = acceleration
@@ -74,7 +74,7 @@ class Hunter(Player):
            #self.possession=True
 class Hunter_View:
     def __init__(self):
-        self.image=pygame.image.load('player.png')
+        self.image=pygame.image.load('Team1_Seeker.png')
         
 
 class Hunter_controller(Player_controller):
@@ -90,7 +90,7 @@ class Hunter_controller(Player_controller):
         surface.blit(self.player.rotated_computer, self.player.rect)
 
     def render(self,surface):
-        surface.blit(self.player.rotated,self.player.rect)
+        surface.blit(self.player.rotated,(self.player.pos.x,self.player.pos.y))
 
     def update(self,time):
             self.player.update(time)

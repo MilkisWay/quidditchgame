@@ -11,11 +11,11 @@ from mode import *
 class QuaffleModel(BallModel):
     def __init__(self, x,y, speed):
         super(QuaffleModel,self).__init__(x,y, speed)
-        self._pos = pygame.math.Vector2(x,y)
+        self.pos = pygame.math.Vector2(x,y)
         self.image = pygame.Surface((8,8))
         self.rect = self.image.get_rect()
         self.rect = pygame.transform.scale(self.image,(8,8))
-        self.radius=50
+        self.radius=100
         self._speed = pygame.math.Vector2(speed,speed)
         self.possession = False
         self.quaffle_holder_type=None
@@ -23,7 +23,7 @@ class QuaffleModel(BallModel):
     def change_holder_type(self,line):
         self.quaffle_holder_type=line
 
-    def none_is_posessing(self):
+    def none_is_possessing(self):
         self.possession = False
         self.quaffle_holder_type=None
 
@@ -48,15 +48,16 @@ class QuaffleController(BallController):
     def radius_of_hunters(self,hunter):
         self.hunter2=hunter
 
-    def update(self,dt):
+    def update(self):
         if self.ball.possession==True:
-            if self.hunter!=None:
-                self.ball.set_pos(self.hunter.pos)
-        else:
-             self.ball.set_Coord_y(self.ball.get_Coord_y()+10)
-             if self.ball.get_Coord_y()>=1080:
-                self.ball.set_Coord_y(0+100)
+                self.ball.pos.x=self.hunter.pos.x
+                self.ball.pos.y=self.hunter.pos.y
+
+    def update2(self):
+        if self.ball.possession==False:
+             self.ball.pos.y=self.ball.pos.y+10
+             if self.ball.pos.y>=1080:
+                self.ball.pos.y=100
 
     def render(self,surface):
-        surface.blit(self._image,(self.ball.get_Coord_x(),self.ball.get_Coord_y(),32,32))
-        pygame.draw.circle(surface,255,(500,100),20)
+        surface.blit(self._image,(self.ball.pos.x,self.ball.pos.y))

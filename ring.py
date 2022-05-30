@@ -12,7 +12,7 @@ class Ring(NonMovableObject):
         self.image = pygame.Surface((10, 10))
         self.image=pygame.image.load('ring.png')
         self.gameStop = False
-        self.pos= pygame.math.Vector2(x,y)
+        self.pos=pygame.math.Vector2(x,y)
         #self.rect = self.image.get_rect()
         self.rect.x=500
         self.rect.y=500
@@ -32,4 +32,4 @@ class Ring_controller(NonMovableObjectController):
     def update(self,gameTime):
         pass
     def render(self,surface):
-        surface.blit(self.image,self.ring.rect)
+        surface.blit(self.image,(self.ring.pos.x,self.ring.pos.y))

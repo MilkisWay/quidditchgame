@@ -24,10 +24,9 @@ class BasicGame(object):
         self.screen_width=self.setup.screen_width
         self.screen_height=self.setup.screen_height
         self.fpsClock = pygame.time.Clock()
-        self.mainwindow = pygame.display.set_mode(( self.screen_width,self.screen_height),HWSURFACE|DOUBLEBUF|FULLSCREEN,32)
+        self.mainwindow = pygame.display.set_mode(( self.screen_width,self.screen_height),HWSURFACE)
         self.background = pygame.image.load('Background1.jpg')
         self.currentState = None
-        self.screen_rect = self.mainwindow.get_rect()
 
     def changeState(self,newState):
         if self.currentState!=None:
@@ -67,3 +66,6 @@ class BasicGame(object):
 
             pygame.display.update()
             self.fpsClock.tick(40)
+
+
+            

@@ -12,7 +12,8 @@ class Player(Unit):
         self.acceleration = acceleration
         self.pointer=1 
         self.rect = self.image.get_rect()
-   
+        self.x=0
+        self.y=0
         self.type = types
         self.health=100
         self.game=game
@@ -26,7 +27,7 @@ class Player(Unit):
                 t=0
                 keystate = pygame.key.get_pressed()
                 if keystate[pygame.K_LEFT]:
-                    self.speed.x = -10
+                    self.speed.x =- 10
                     self.pos.x-=10
                     if t==0:
                         self.rotated=pygame.transform.flip(self.image,False,False)
@@ -52,13 +53,16 @@ class Player(Unit):
                 else:
                     self.speed.x=0
                     self.speed.y=0
-                self.rect.x+=self.speed.x
-                self.rect.y+=self.speed.y
+
+                #self.rect.x+=self.speed.x
+                #self.rect.y+=self.speed.y
+
                 if self.pos.x>self.setup.screen_width:
                     self.pos.x-=10
                 if self.pos.y>self.setup.screen_height:
                     self.pos.y-=10
-                self.rect.clamp_ip(self.game.screen_rect)
+                #self.rect.clamp_ip(self.game.screen_rect)
+                print(self.pos)
 
                 return self.rotated
 
@@ -75,7 +79,6 @@ class Player(Unit):
 
         flag=0
         if x>0:
-            print('1')
             if flag==0 or flag==-1:
                 self.rotated_computer=pygame.transform.flip(self.image,True,False)
                 flag=1
@@ -83,7 +86,6 @@ class Player(Unit):
                 self.rotated_computer=pygame.transform.flip(self.image,False,False)
                 flag=1
         elif x<0:
-            print('2')
             if flag==0:
                 self.rotated_computer=pygame.transform.flip(self.image,False,False)
                 flag=-1
@@ -95,17 +97,17 @@ class Player(Unit):
 
         if self.rect.y<0:
                 self.rect.y=0
-        if self.rect.y>600:
+        if self.rect.y>self.setup.screen_height:
                 self.rect.y-=100
         if self.rect.x<0:
                 self.rect.x=0
-        if self.rect.x>1300:
+        if self.rect.x>self.setup.screen_height:
                 self.rect.x-=100
-        self.rect.y+=self.dy*self.speed.y*time*0.5
-        self.rect.x+=self.dx*self.speed.x*time*0.5
-        self.pos.x+=self.rect.x
-        self.pos.y+=self.rect.y
-        self.rect.clamp_ip(self.game.screen_rect)
+
+        self.pos.y+=self.dy*self.speed.y*0.5
+        self.pos.x+=self.dx*self.speed.x*0.5
+       
+        #self.rect.clamp_ip(self.game.screen_rect)
         return self.rotated_computer
             
     
