@@ -44,12 +44,12 @@ class PlayGameState(GameState):
     def initialise(self):
         ring = Ring(10,700)
         ring2 = Ring(1380,700)
-        quaffle = QuaffleModel(500,100,1)
+        quaffle = QuaffleModel(1000,100,1)
         snitch = SnitchModel(random.randint(10,1000),random.randint(10,1900))
-        hunter_computer=Hunter(100,100,1,1,2,self.game)
-        hunter_computer_2=Hunter(200,100,1,1,2,self.game)
-        hunter_computer_3=Hunter(200,100,1,1,2,self.game)
-        hunter=Hunter(500,100,1,1,1,self.game)
+        hunter_computer=Hunter(100,100,1,1,1,self.game,"Team1_hunter.png")
+        hunter_computer_2=Hunter(200,100,1,1,2,self.game,"Team2_hunter.png")
+        hunter_computer_3=Hunter(200,100,1,1,2,self.game,"Team2_hunter.png")
+        hunter=Hunter(500,100,1,1,1,self.game,"Team1_hunter.png")
         seeker_2=Seeker(200,200,1,1,2,self.game)
         seeker=Seeker(600,200,1,1,1,self.game)
 
@@ -57,10 +57,10 @@ class PlayGameState(GameState):
         quaffle_render = QuaffleView()
         ring_render=Ring_View()
         ring_render2=Ring_View()
-        hunter_computer_render=Hunter_View()
-        hunter_computer_render_2=Hunter_View()
-        hunter_computer_render_3=Hunter_View()
-        hunter_render=Hunter_View()
+        hunter_computer_render=Hunter_View("Team1_hunter.png")
+        hunter_computer_render_2=Hunter_View("Team2_hunter.png")
+        hunter_computer_render_3=Hunter_View("Team2_hunter.png")
+        hunter_render=Hunter_View("Team1_hunter.png")
         seeker_2_render=Seeker_View()
         seeker_render=Seeker_View()
         score1=0
@@ -109,7 +109,7 @@ class PlayGameState(GameState):
 
         self.controllers=[self.snitch_controller,self.team_1_controller]
 
-        self.computer_controller=[self.hunter_computer_controller, self.seeker_controller, self.hunter_computer_controller_2, self.hunter_computer_controller_3]
+        #self.computer_controller=[self.hunter_computer_controller, self.seeker_controller, self.hunter_computer_controller_2, self.hunter_computer_controller_3]
 
         self.renders=[self.snitch_controller,self.quaffle_controller,self.seeker_controller_2,self.hunter_controller,self.ring_controller2,self.seeker_controller, self.ring_controller]
 
@@ -122,9 +122,12 @@ class PlayGameState(GameState):
         
         for i in self.controllers:
             i.update(gameTime)
+            self.seeker_controller.player.search(self.snitch_controller.ball.pos,gameTime)
+            self.hunter_computer_controller_3.player.computer_update_3(gameTime)
+            self.hunter_computer_controller_2.search(self.quaffle_controller.ball.pos)
+            self.hunter_computer_controller.player.computer_update_3(gameTime)
    
-        for i in self.computer_controller:
-            i.computer_update(gameTime)
+        
 
         self.collision_controller.update(gameTime)
 

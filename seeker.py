@@ -33,35 +33,12 @@ class Seeker(Player):
         self.health=100
         self.rotated=self.image
         self.rotated_computer=self.image
+        self.flag_move=20
+        self.next_pos_index=1
+        self.i=1
+        self.points=[]
+        self.points_1=[]
     
-
-    def search(self,  ball, time, ring):
-        min_dist = 25
-        max_dist = 100
-        target_vector=pygame.math.Vector2(self.pos)
-        follower_vector=pygame.math.Vector2(ball.pos)
-        new_vector=pygame.math.Vector2(ball.pos)
-
-        distance = follower_vector.distance_to(target_vector)
-        if distance > min_dist:
-            direction_vector= (target_vector - follower_vector) / distance 
-            min_step = max(0, distance - max_dist)
-            max_step = distance - min_dist
-            step_distance= min_step + (max_step - min_step) 
-            new_vector= (follower_vector + step_distance*direction_vector)
-            self.pos.x=new_vector.x
-            self.pos.y=new_vector.y
-
-            self.rect.x=new_vector.x
-            self.rect.y=new_vector.y
-        
-        if (self.pos.x==ball.pos.x or self.pos.y==ball.pos.y):
-            ball.holder=self
-            self.quaffle=ball
- 
-            ball.update(time)
-
-
 class Seeker_View:
     def __init__(self):
         self.image=pygame.image.load('player.png')
@@ -78,13 +55,8 @@ class Seeker_controller(Player_controller):
     def render(self,surface):
         surface.blit(self.player.rotated,(self.player.pos.x,self.player.pos.y))
 
-    def shoot(self):
-       pass
-
     def update(self,time):
-
-            self.player.update(time)
+        self.player.update(time)
     
     def computer_update(self,time):
-        
-            self.player.computer_update(time)
+        self.player.computer_update(time)

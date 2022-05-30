@@ -72,7 +72,9 @@
     <Content Include="ring.png" />
     <Content Include="seeker.jpg" />
     <Content Include="snitch.png" />
+    <Content Include="Team1_hunter.png" />
     <Content Include="Team1_Seeker.png" />
+    <Content Include="Team2_hunter.png" />
     <Content Include="Text files\score.txt" />
     <Content Include="Photos\Slyth_block.png" />
     <Content Include="Text files\surfmapp.txt" />

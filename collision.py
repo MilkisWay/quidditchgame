@@ -13,7 +13,7 @@ class CollisionController(object):
         self._seekers=[]
         self.snitch=None
         self.rings=[]
-        self.closest_hunter_to_quffle=None
+        self.closest_hunter_to_quaffle=None
         self.min_distance_to_quaffle=10000000000000
         self.scores=[0,0]
 
@@ -54,12 +54,16 @@ class CollisionController(object):
 
         if object1.pos.x>=self.basic.screen_width:
             object1.pos.x=object1.pos.x-10
+            if object1.pos.y>=self.basic.screen_height:
+                 object1.pos.y=object1.pos.y-10
+            elif object1.pos.y<=10:
+                 object1.pos.y=object1.pos.y+10
         elif object1.pos.x<=10:
             object1.pos.x=object1.pos.x+10
-        if object1.pos.y>=self.basic.screen_height:
-              object1.pos.y=object1.pos.y-10
-        elif object1.pos.y<=10:
-                object1.pos.y=object1.pos.y+10
+            if object1.pos.y>=self.basic.screen_height:
+                 object1.pos.y=object1.pos.y-10
+            elif object1.pos.y<=10:
+                 object1.pos.y=object1.pos.y+10
 
     def check_if_on_screen(self):
         for i in self.hunters:
@@ -76,12 +80,11 @@ class CollisionController(object):
                 mousestate=pygame.mouse.get_pressed()
                 if mousestate[0]:
                     if self.distance_to_ring(1)==True:
-                        self.quaffle.ball.set_pos(self.rings[1].ring.pos)
                         self.scores[0]+=10
                         self.quaffle.ball.none_is_possessing()
                         self.quaffle.ball.pos.x=500
                         self.quaffle.ball.pos.y=500
-                        self.quaffle.update2()
+                        self.quaffle.update_if_not_caught()
 
                     else:
                         for i in self.hunters:
@@ -95,36 +98,22 @@ class CollisionController(object):
                             self.quaffle.is_caught_by_hunter(self.closest_hunter_to_quaffle)
                             self.min_distance_to_quaffle=100000000
                             self.closest_hunter_to_quaffle=None
-                            self.quaffle.ball.update()
+                            self.quaffle.update_if_caught()
 
                         elif self.closest_hunter_to_quaffle==None:
                             self.quaffle.ball.none_is_possessing()
-                            self.quaffle.update2()
-                else:
-                    for i in self.hunters:
-                        if i.player.type == 1:
-                            if i.player!=self.quaffle.hunter:
-                                if self.distance_to_object(i) < self.min_distance_to_quaffle:
-                                    self.min_distance_to_quaffle = self.distance_to_object(i)
-                                    self.closest_hunter_to_quaffle=i.player
+                            self.quaffle.update_if_not_caught()
 
-                    if self.closest_hunter_to_quaffle!=None:
-                        self.quaffle.radius_of_hunters(self.closest_hunter_to_quaffle)
-                        self.min_distance_to_quaffle=100000000
-                        self.closest_hunter_to_quaffle=None
-                        self.quaffle,ball.update()
-                    else:
-                        self.quaffle.ball.none_is_possessing()
-                        self.quaffle.update2()
 
             if self.quaffle.ball.quaffle_holder_type == 2:
                 if self.distance_to_ring(0)==True:
                         self.quaffle.ball.set_pos(self.rings[0].ring.pos)
                         self.scores[1]+=10
-                        self.quaffle.ball.none_is_posessing()
+                        self.quaffle.ball.none_is_possessing()
                         self.quaffle.ball.pos.x=500
                         self.quaffle.ball.pos.y=500
-                        self.quaffle.update2()
+                        self.quaffle.update_if_not_caught()
+
                 else:
                     if self.quaffle.hunter.count%10==0:
                         for i in self.hunters:
@@ -138,10 +127,12 @@ class CollisionController(object):
                             self.quaffle.is_caught_by_hunter(self.closest_hunter_to_quaffle)
                             self.min_distance_to_quaffle=100000000
                             self.closest_hunter_to_quaffle=None
-                            self.quaffle.update()
+                            self.quaffle.update_if_caught()
+
                         else:
                             self.quaffle.ball.none_is_possessing()
-                            self.quaffle.update2()
+                            self.quaffle.update_if_not_caught()
+
                     else:
                         for i in self.hunters:
                             if i.player.type == 2:
@@ -160,9 +151,10 @@ class CollisionController(object):
                 self.quaffle.is_caught_by_hunter(self.closest_hunter_to_quaffle)
                 self.min_distance_to_quaffle=100000000
                 self.closest_hunter_to_quaffle=None
-                self.quaffle.update()
-            elif self.closest_hunter_to_quaffle==None:
-                self.quaffle.update2()
+                self.quaffle.update_if_caught()
+            else:
+                self.quaffle.update_if_not_caught()
+        self.quaffle.update()
 
     def compare_with_object(self,i):
         if  self.distance_to_object(i)<=(self.quaffle.ball.radius):

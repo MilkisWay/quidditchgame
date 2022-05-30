@@ -14,7 +14,7 @@ class SnitchModel(BallModel):
         self.pos = pygame.math.Vector2(x,y)
         self.rect = self.image.get_rect(topleft = self._pos)
         self.rect = pygame.transform.scale(self.image,(8,8))
-        self.radius=250
+        self.radius=10
         self.gameStop = False
         self._speed = pygame.math.Vector2(speed,speed)
         self.result=0

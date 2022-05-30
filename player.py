@@ -1,5 +1,6 @@
 import pygame 
 import random
+import numpy
 from unit import Unit
 from ball import BallController
 from collision import CollisionController
@@ -12,6 +13,7 @@ class Player(Unit):
         self.acceleration = acceleration
         self.pointer=1 
         self.rect = self.image.get_rect()
+        self.rect = pygame.transform.scale(self.image,(8,8))
         self.x=0
         self.y=0
         self.type = types
@@ -20,6 +22,31 @@ class Player(Unit):
         self.setup=self.game.setup
         self.rotated=self.image
         self.rotated_computer=self.image
+        self.flag_move=5
+        self.next_pos_index=1
+        self.i=1
+        self.points=[]
+        self.points_1=[]
+
+
+    def search(self, pos,time):
+        min_dist = 25
+        max_dist = 100
+        target_vector=pygame.math.Vector2(self.pos)
+        follower_vector=pygame.math.Vector2(pos)
+        new_vector=pygame.math.Vector2(pos)
+
+        distance = follower_vector.distance_to(target_vector)
+        if distance > min_dist:
+            direction_vector= (target_vector - follower_vector) / distance 
+            min_step = max(0, distance - max_dist)
+            max_step = distance - min_dist
+            step_distance= min_step + (max_step - min_step) 
+            new_vector= (follower_vector + step_distance*direction_vector)
+            self.pos.x=new_vector.x
+            self.pos.y=new_vector.y
+            self.rect.x=new_vector.x
+            self.rect.y=new_vector.y
        
 
     def update(self,time):
@@ -106,7 +133,66 @@ class Player(Unit):
         self.pos.x+=self.dx*self.speed.x*0.5
 
         return self.rotated_computer
-            
+
+    def computer_update_3(self,time):
+        w=self.setup.screen_width
+        h=self.setup.screen_height
+        t=0
+
+        for i in range(0,200):
+            x=random.randint(0,w)
+            y=random.randint(0,h)
+            position=(x,y)
+            self.points.append(position)
+  
+        dir = pygame.math.Vector2(self.points[self.i]) - (self.pos.x, self.pos.y)
+        if dir.x<0:
+               if t==0:
+                  self.rotated=pygame.transform.flip(self.image,False,False)
+                  t=-1
+               elif t==1:
+                   self.rotated=pygame.transform.flip(self.image,True,False)
+                   t=-1
+        elif dir.x>0:
+              if t==0 or t==-1:
+                        self.rotated=pygame.transform.flip(self.image,True,False)
+                        t=1
+              elif t==1:
+                        self.rotated=pygame.transform.flip(self.image,False,False)
+                        t=1
+        if dir.length() < self.flag_move :
+            self.pos.x, self.pos.y = self.points[self.i]
+            self.i = (self.i + 1) % len(self.points)
+        else:
+            dir.scale_to_length(self.flag_move)
+            new_pos = pygame.math.Vector2(self.pos.x, self.pos.y) + dir*2
+            self.pos.x, self.pos.y = (new_pos.x, new_pos.y) 
+
+        return self.rotated
+
+    def computer_update_2(self, time):
+        n=100
+        x = numpy.zeros(n)
+        y = numpy.zeros(n)
+        for i in range(1, n):
+            val = random.randint(1, 4)
+            if val == 1:
+                x[i] = x[i - 1] + 1
+                y[i] = y[i - 1]
+            elif val == 2:
+                x[i] = x[i - 1] - 1
+                y[i] = y[i - 1]
+            elif val == 3:
+                x[i] = x[i - 1]
+                y[i] = y[i - 1] + 1
+            else:
+                x[i] = x[i - 1]
+                y[i] = y[i - 1] - 1
+
+            self.pos.x+=x[i]
+            self.pos.y+=y[i]
+            self.rect.x+=x[i]
+            self.rect.y+=y[i]
     
 
         #if (self.pos==pos_2.x) and (self.pos.y==pos_2.y):

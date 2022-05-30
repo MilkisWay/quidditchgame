@@ -89,6 +89,6 @@ class Team_controller:
                 self.team.passiv_player=self.team.group[0]
 
         self.team.activity_player.update(time)
-        self.team.passiv_player.computer_update(time)
+        self.team.passiv_player.computer_update_3(time)
         
 
